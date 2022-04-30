@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import {
   Box,
+  ContentWrapper,
   GridWrapper,
   Image,
   SectionWrapper,
@@ -9,6 +10,7 @@ import {
 } from "components";
 import { useQuery } from "styles/breakpoints";
 import { StaticImage } from "gatsby-plugin-image";
+import { Input } from "components/inputs/Input";
 
 type People = "Viktorija" | "Vidmis" | "Martyna" | "Nojus"; //NOTE: Type might be not only strings
 
@@ -89,6 +91,7 @@ const Home: React.FC = () => {
         minHeight={isMobile ? "50%" : "100vh"}
         minWidth='100vw'
       >
+        <Input backgroundColor='accent' color='white' />
         <Typography type='h1' textAlign='center'>
           fooood
         </Typography>

@@ -1,9 +1,13 @@
 import React, { useState } from "react";
-import styled from "styled-components/macro";
 
-import { Box, Image, SectionWrapper, Typography } from "components";
+import {
+  Box,
+  GridWrapper,
+  Image,
+  SectionWrapper,
+  Typography,
+} from "components";
 import { useQuery } from "styles/breakpoints";
-import { theme } from "styles/theme";
 import { StaticImage } from "gatsby-plugin-image";
 
 type People = "Viktorija" | "Vidmis" | "Martyna" | "Nojus"; //NOTE: Type might be not only strings

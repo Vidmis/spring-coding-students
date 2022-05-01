@@ -2,14 +2,40 @@ import React from "react";
 import styled from "styled-components/macro";
 import { Box } from "components";
 
+type InputType =
+  | "button"
+  | "checkbox"
+  | "color"
+  | "date"
+  | "datetime-local"
+  | "email"
+  | "file"
+  | "hidden"
+  | "image"
+  | "month"
+  | "number"
+  | "password"
+  | "radio"
+  | "range"
+  | "reset"
+  | "search"
+  | "submit"
+  | "tel"
+  | "text"
+  | "time"
+  | "url"
+  | "week";
+
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  as: string;
+  minWidth?: string;
+  maxWidth?: string;
+  placeholder?: string;
+  type?: InputType;
+  id?: string;
+  name?: string;
+  value?: string | number;
+  required?: any;
+  onChange?: () => void;
 }
 
-const InputStyles = styled(Box)`
-  min-width: 16rem;
-`;
-
-export const Input: React.FC<InputProps> = (props) => (
-  <InputStyles as='input' {...props} />
-);
+export const Input = styled(Box).attrs({ as: "input" })<InputProps>``;

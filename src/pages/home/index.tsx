@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import {
   Box,
+  Container,
   ContentWrapper,
   GridWrapper,
   Image,
@@ -91,7 +92,6 @@ const Home: React.FC = () => {
         minHeight={isMobile ? "50%" : "100vh"}
         minWidth='100vw'
       >
-        <Input backgroundColor='accent' color='white' />
         <Typography type='h1' textAlign='center'>
           fooood
         </Typography>

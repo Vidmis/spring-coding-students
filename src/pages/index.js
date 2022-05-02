@@ -1,11 +1,11 @@
 // export { default } from './home';
 
-import React from 'react';
+import React from "react";
 
-import Home from './home';
+import Main from "./main";
 
 const Landing = (props) => {
-	return <Home />;
+  return <Main />;
 };
 
 export default Landing;

@@ -6,6 +6,9 @@ export * from "./wrappers/GridWrapper";
 export * from "./wrappers/FlexWrapper";
 export * from "./wrappers/SectionWrapper";
 
+// components
+export * from "./navigation/Navigation";
+
 //texts
 // export * from './texts/h1';
 export * from "./typography/Typography";

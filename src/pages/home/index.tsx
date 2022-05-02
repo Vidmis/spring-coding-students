@@ -1,17 +1,8 @@
 import React, { useState } from "react";
 
-import {
-  Box,
-  Container,
-  ContentWrapper,
-  GridWrapper,
-  Image,
-  SectionWrapper,
-  Typography,
-} from "components";
+import { Box, Image, SectionWrapper, Typography } from "components";
 import { useQuery } from "styles/breakpoints";
 import { StaticImage } from "gatsby-plugin-image";
-import { Input } from "components/inputs/Input";
 
 type People = "Viktorija" | "Vidmis" | "Martyna" | "Nojus"; //NOTE: Type might be not only strings
 
@@ -92,6 +83,7 @@ const Home: React.FC = () => {
         minHeight={isMobile ? "50%" : "100vh"}
         minWidth='100vw'
       >
+        <Box>VO</Box>
         <Typography type='h1' textAlign='center'>
           fooood
         </Typography>

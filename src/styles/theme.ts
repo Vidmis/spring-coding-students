@@ -4,6 +4,7 @@ type BreakpointsProp<T = string> = {
   _: T;
   lmobile: T;
   ltablet: T;
+  laptop: T;
   desktop: T;
 };
 
@@ -12,12 +13,16 @@ const colors = {
   primary: "#101326",
   secondary: "#29C0CD",
   accent: "#E34578",
+  transparent: "#0000000d",
+  cyan: "#E7FAFE",
+  grey: "#555",
 };
 
 const breakpoints: BreakpointsProp = {
   _: "",
   lmobile: "24rem",
   ltablet: "48rem",
+  laptop: "80rem",
   desktop: "90rem",
 };
 
@@ -25,6 +30,8 @@ export const theme = {
   colors,
   fontFamily: { primary: "Red Hat Display" },
   fontSizes: {
+    fs8: "0.5rem",
+    fs10: "0.625rem",
     fs12: "0.75rem",
     fs14: "0.875rem",
     fs16: "1rem",
@@ -47,14 +54,20 @@ export const theme = {
     fw800: 800,
     fw900: 900,
   },
+  lineHeights: {
+    lh: "1.125rem",
+  },
   breakpoints,
   space: {
+    s0: "0px",
+    s10: "0.625rem",
     s16: "1rem",
     s32: "2rem",
     s48: "3rem",
     s64: "4rem",
     s80: "5rem",
     s96: "6rem",
+    auto: "0 auto",
   },
   borders: {
     b_solid: "1px solid #000000",

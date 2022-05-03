@@ -1,20 +1,40 @@
-import styled from 'styled-components/macro';
+import styled from "styled-components/macro";
+import {
+  position,
+  PositionProps,
+  space,
+  SpaceProps,
+  minHeight,
+  MinHeightProps,
+  color,
+  BackgroundColorProps,
+  compose,
+} from "styled-system";
 
-import { mobile } from 'styles/breakpoints';
-import { Colors } from 'styles/theme';
+import { mobile, tablet } from "styles/breakpoints";
+import { Theme } from "styles/theme";
 
-interface SectionWrapperStyles {
-	minHeight?: string;
-	backgroundColor?: Colors;
-}
+const sectionProps = compose(position, space, minHeight, color);
+interface SectionWrapperProps<T>
+  extends PositionProps<T>,
+    SpaceProps<T>,
+    MinHeightProps<T>,
+    BackgroundColorProps<T> {}
 
-export const SectionWrapper = styled.section<SectionWrapperStyles>`
-	padding: 3rem 0;
-	min-height: ${({ minHeight }) => minHeight || ''};
-	background-color: ${({ backgroundColor, theme }) =>
-		backgroundColor ? theme.colors[backgroundColor] : ''};
+export const SectionWrapper = styled.section<SectionWrapperProps<Theme>>`
+  position: relative;
+  padding: 4rem;
+  background-color: #fff;
 
-	@media ${mobile} {
-		padding: 2rem 0;
-	}
+  @media ${tablet} {
+    padding: 3rem;
+  }
+
+  @media ${mobile} {
+    padding: 1rem;
+  }
+
+  && {
+    ${sectionProps}
+  }
 `;

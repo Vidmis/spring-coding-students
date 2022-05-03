@@ -1,7 +1,7 @@
 import styled from "styled-components/macro";
 
 import { tablet } from "styles/breakpoints";
-import { Box } from "./Box";
+import { Box } from "components";
 
 // interface ConentProps<T> extends GridProps<T> {}
 

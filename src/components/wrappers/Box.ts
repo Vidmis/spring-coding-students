@@ -1,7 +1,11 @@
 import styled from "styled-components/macro";
 import {
+  alignItems,
+  AlignItemsProps,
   alignSelf,
   AlignSelfProps,
+  backgroundColor,
+  BackgroundColorProps,
   border,
   BorderProps,
   BoxShadowProps,
@@ -10,6 +14,12 @@ import {
   compose,
   display,
   DisplayProps,
+  flexDirection,
+  FlexDirectionProps,
+  fontSize,
+  FontSizeProps,
+  justifyContent,
+  JustifyContentProps,
   layout,
   LayoutProps,
   position,
@@ -35,7 +45,12 @@ const boxProps = compose(
   layout,
   border,
   shadow,
-  textAlign
+  textAlign,
+  flexDirection,
+  justifyContent,
+  alignItems,
+  backgroundColor,
+  fontSize
 );
 
 export interface IBoxStylesProps<T>
@@ -48,7 +63,12 @@ export interface IBoxStylesProps<T>
     LayoutProps<T>,
     ShadowProps<T>,
     TextAlignProps<T>,
-    SpaceProps<T> {}
+    SpaceProps<T>,
+    JustifyContentProps<T>,
+    FlexDirectionProps<T>,
+    AlignItemsProps<T>,
+    BackgroundColorProps<T>,
+    FontSizeProps<T> {}
 
 export const Box = styled.div<IBoxStylesProps<Theme>>`
   && {

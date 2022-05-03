@@ -11,6 +11,10 @@ import {
   TypographyProps,
   textStyle,
   typography,
+  minWidth,
+  maxWidth,
+  MinWidthProps,
+  MaxWidthProps,
 } from "styled-system";
 
 import { Colors, Theme } from "styles/theme";
@@ -48,10 +52,16 @@ const typographyProperties = compose(
   lineHeight,
   textStyle,
   typography,
-  space
+  space,
+  minWidth,
+  maxWidth
 );
 
-export interface TextProps extends SpaceProps<Theme>, TypographyProps<Theme> {
+export interface TextProps
+  extends SpaceProps<Theme>,
+    TypographyProps<Theme>,
+    MinWidthProps<Theme>,
+    MaxWidthProps<Theme> {
   color?: Colors;
   type?: TextType;
   textTransform?: Property.TextTransform;
@@ -81,7 +91,7 @@ const Text = styled.p<TextProps>`
     type && applyTextType(type as TextType, theme as Theme)};
 
   color: ${({ theme, color }) =>
-    color ? theme.colors[color] : theme.colors.white};
+    color ? theme.colors[color] : theme.colors.primary};
 
   && {
     ${typographyProperties}

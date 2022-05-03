@@ -2,35 +2,10 @@ import React from "react";
 import styled from "styled-components/macro";
 import { Box } from "components";
 
-type InputType =
-  | "button"
-  | "checkbox"
-  | "color"
-  | "date"
-  | "datetime-local"
-  | "email"
-  | "file"
-  | "hidden"
-  | "image"
-  | "month"
-  | "number"
-  | "password"
-  | "radio"
-  | "range"
-  | "reset"
-  | "search"
-  | "submit"
-  | "tel"
-  | "text"
-  | "time"
-  | "url"
-  | "week";
-
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  minWidth?: string;
-  maxWidth?: string;
+  min?: string;
+  max?: string;
   placeholder?: string;
-  type?: InputType;
   id?: string;
   name?: string;
   value?: string | number;

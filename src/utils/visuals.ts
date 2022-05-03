@@ -6,6 +6,7 @@ import badgeImg from "assets/images/badge.png";
 import bakedChickenImg from "assets/images/baked_chicken.png";
 import chickenSaladImg from "assets/images/chicken_salad.png";
 import chiefImg from "assets/images/chief.png";
+import letterImg from "assets/images/letter.png";
 
 import cakeImg from "assets/images/categories/cake.png";
 import chocolateImg from "assets/images/categories/choco.png";
@@ -27,32 +28,36 @@ import riceImg from "assets/images/grid_imgs/rice.png";
 import eggSaladsImg from "assets/images/salads/egg_salads.png";
 import redSaladsImg from "assets/images/salads/red_salads.png";
 
+import johnImg from "assets/images/john.png";
+
 export type Visuals = keyof typeof visuals;
 export const visuals: Record<string, string> = {
-	students,
-	gatsbyImg,
+  students,
+  gatsbyImg,
 
-	logoImg
-	badgeImg,
-	bakedChickenImg,
-	chickenSaladImg,
-	chiefImg,
-	cakeImg,
-	chocolateImg
-	meatImg,
-	rockImg,
-	saladImg,
-	sandwichImg,
-	logoImg,
-	adImg
-	americanPancakeImg,
-	burgerImg,
-	fishImg
-	greekSaladImg,
-	meatSaladImg,
-	spaghettiImg,
-	pancakeImg,
-	riceImg,
-	redSaladsImg,
-	eggSaladsImg,
+  logoImg,
+  badgeImg,
+  bakedChickenImg,
+  chickenSaladImg,
+  chiefImg,
+  letterImg,
+  cakeImg,
+  chocolateImg,
+  meatImg,
+  rockImg,
+  saladImg,
+  sandwichImg,
+  adImg,
+  americanPancakeImg,
+  burgerImg,
+  fishImg,
+  greekSaladImg,
+  meatSaladImg,
+  spaghettiImg,
+  pancakeImg,
+  riceImg,
+  redSaladsImg,
+  eggSaladsImg,
+
+  johnImg,
 };

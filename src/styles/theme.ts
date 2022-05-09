@@ -15,7 +15,7 @@ const colors = {
   accent: "#E34578",
   transparent: "#0000000d",
   cyan: "#E7FAFE",
-  grey: "#555",
+  grey: "#666",
 };
 
 const breakpoints: BreakpointsProp = {

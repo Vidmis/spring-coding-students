@@ -1,7 +1,7 @@
 import styled from "styled-components/macro";
 import { Box } from "components";
 import { fontSize, FontSizeProps } from "styled-system";
-import { Theme } from "styles/theme";
+import { theme, Theme } from "styles/theme";
 
 interface INavProps<T> extends FontSizeProps<T> {}
 
@@ -17,9 +17,9 @@ export const NavigationStyled = styled(Box)<INavProps<Theme>>`
     li {
       margin: 0 1rem;
       a {
-        color: #666;
+        color: ${theme.colors.grey};
         &:hover {
-          color: #000;
+          color: ${theme.colors.primary};
         }
       }
     }

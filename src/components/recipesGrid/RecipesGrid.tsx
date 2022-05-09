@@ -92,8 +92,19 @@ export const RecipesGrid: React.FC = () => {
         tempor incididunt ut labore et dolore magna aliqut enim ad minim{" "}
       </Typography>
       <Box as='ul' px='s0' my='s32'>
-        <GridWrapper>
-          <Box className='ad_image'>
+        <GridWrapper
+          p='s48'
+          maxWidth='80rem'
+          gridTemplateColumns='repeat(auto-fit, 18rem)'
+          justifyContent='center'
+          gridGap='1rem'
+        >
+          <Box
+            className='ad_image'
+            gridColumn={{ _: "1", ltablet: "3" }}
+            gridRow='2'
+            gridTemplateColumns={{ _: "0", ltablet: "3" }}
+          >
             <Image src='adImg' alt='adImg' width='18rem' />
           </Box>
           {RECIPES_LIST.map(({ image, title, time, foodType }, index) => (

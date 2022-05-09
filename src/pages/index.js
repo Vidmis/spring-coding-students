@@ -2,10 +2,10 @@
 
 import React from "react";
 
-import Main from "./main";
+import Home from "./home/index.tsx";
 
 const Landing = (props) => {
-  return <Main />;
+  return <Home />;
 };
 
 export default Landing;

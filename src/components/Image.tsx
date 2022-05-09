@@ -34,13 +34,11 @@ export const Image: React.FC<ImageProps> = ({
   mobile_src,
   onClick,
   ...rest
-}) => {
-  return (
-    <LazyLoad height='100%'>
-      <picture onClick={onClick}>
-        {mobile_src && <source media={mobile} srcSet={visuals[mobile_src]} />}
-        <Img src={visuals[src]} alt={alt} {...rest} />
-      </picture>
-    </LazyLoad>
-  );
-};
+}) => (
+  <LazyLoad height='100%'>
+    <picture onClick={onClick}>
+      {mobile_src && <source media={mobile} srcSet={visuals[mobile_src]} />}
+      <Img src={visuals[src]} alt={alt} {...rest} />
+    </picture>
+  </LazyLoad>
+);

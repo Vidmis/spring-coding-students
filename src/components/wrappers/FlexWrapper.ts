@@ -10,7 +10,6 @@ const flexProps = compose(flexbox);
 
 export const FlexWrapper = styled(Box)<FlexProps<Theme>>`
   display: flex;
-  flex-direction: row;
 
   && {
     ${flexProps}

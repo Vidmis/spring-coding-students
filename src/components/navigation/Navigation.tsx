@@ -10,26 +10,33 @@ import {
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
 import { Box } from "components/wrappers/Box";
+import { theme } from "styles/theme";
 
 interface INavListItem {
   menuItem: string;
 }
 
 const NavListItem = ({ menuItem }: INavListItem) => (
-  <li>
+  <Box as='li' p='s10'>
     <Link to='#'>{menuItem}</Link>
-  </li>
+  </Box>
 );
 
 export const Navigation: React.FC = () => {
   return (
-    <NavigationStyled mx='s80' fontSize='fs16' display='flex'>
-      <Image src='logoImg' alt='logo' maxWidth='4rem' />
-      <ul>
+    <NavigationStyled
+      mx='s80'
+      fontSize='fs16'
+      display='flex'
+      justifyContent='space-between'
+      alignItems='center'
+    >
+      <Image src='logoImg' alt='logo' maxWidth='4rem' margin='0.5rem' />
+      <Box as='ul' display='flex'>
         {MENU_LIST.map((menuItem: string, index: number) => (
           <NavListItem key={index + menuItem} menuItem={menuItem} />
         ))}
-      </ul>
+      </Box>
       <span>
         <Link to='https://www.facebook.com/' target='_blank'>
           <FontAwesomeIcon icon={faFacebookF} />
@@ -45,4 +52,11 @@ export const Navigation: React.FC = () => {
   );
 };
 
-const NavigationStyled = styled(Box)``;
+const NavigationStyled = styled(Box)`
+  span {
+    a {
+      margin: 0 0.5rem;
+      color: ${theme.colors.primary};
+    }
+  }
+`;

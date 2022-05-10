@@ -23,7 +23,6 @@ import {
   MaxWidthProps,
 } from "styled-system";
 
-import { mobile, tablet } from "styles/breakpoints";
 import { Theme } from "styles/theme";
 
 const sectionProps = compose(
@@ -52,16 +51,7 @@ interface SectionWrapperProps<T>
 
 export const SectionWrapper = styled.section<SectionWrapperProps<Theme>>`
   position: relative;
-  padding: 3rem;
   background-color: #fff;
-
-  @media ${tablet} {
-    padding: 2rem;
-  }
-
-  @media ${mobile} {
-    padding: 0px;
-  }
 
   && {
     ${sectionProps}

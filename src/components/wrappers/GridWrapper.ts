@@ -1,7 +1,6 @@
 import styled from "styled-components/macro";
 import { grid, GridProps, compose } from "styled-system";
 
-import { tablet } from "styles/breakpoints";
 import { Box } from "./Box";
 import { Theme } from "styles/theme";
 

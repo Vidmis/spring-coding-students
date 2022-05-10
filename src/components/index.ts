@@ -8,8 +8,6 @@ export * from "./wrappers/SectionWrapper";
 
 // components
 export * from "./navigation/Navigation";
-export * from "./categories/Categories";
-export * from "./recipesGrid/RecipesGrid";
 
 //texts
 // export * from './texts/h1';

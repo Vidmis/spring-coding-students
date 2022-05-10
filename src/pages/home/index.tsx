@@ -1,12 +1,5 @@
 import React from "react";
-import { Header } from "./sections/header/Header";
-import {
-  Navigation,
-  SectionWrapper,
-  ContentWrapper,
-  Categories,
-  RecipesGrid,
-} from "components";
+import { Navigation, SectionWrapper, ContentWrapper } from "components";
 
 const Home: React.FC = () => {
   return (
@@ -21,15 +14,6 @@ const Home: React.FC = () => {
           color='#000'
         >
           <Navigation />
-        </SectionWrapper>
-        <SectionWrapper>
-          <Header />
-        </SectionWrapper>
-        <SectionWrapper>
-          <Categories />
-        </SectionWrapper>
-        <SectionWrapper>
-          <RecipesGrid />
         </SectionWrapper>
       </ContentWrapper>
     </>

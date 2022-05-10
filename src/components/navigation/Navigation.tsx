@@ -1,14 +1,15 @@
 import React from "react";
+import styled from "styled-components/macro";
 import { Link } from "gatsby";
 import { Image } from "components";
 import { MENU_LIST } from "consts";
-import { NavigationStyled } from "./NavigationStyled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFacebookF,
   faInstagram,
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
+import { Box } from "components/wrappers/Box";
 
 interface INavListItem {
   menuItem: string;
@@ -22,8 +23,8 @@ const NavListItem = ({ menuItem }: INavListItem) => (
 
 export const Navigation: React.FC = () => {
   return (
-    <NavigationStyled mx='s80' fontSize='fs16'>
-      <Image src='logoImg' alt='logo' />
+    <NavigationStyled mx='s80' fontSize='fs16' display='flex'>
+      <Image src='logoImg' alt='logo' maxWidth='4rem' />
       <ul>
         {MENU_LIST.map((menuItem: string, index: number) => (
           <NavListItem key={index + menuItem} menuItem={menuItem} />
@@ -43,3 +44,5 @@ export const Navigation: React.FC = () => {
     </NavigationStyled>
   );
 };
+
+const NavigationStyled = styled(Box)``;

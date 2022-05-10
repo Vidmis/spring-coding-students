@@ -1,6 +1,8 @@
+import { ReactNode } from "react";
 import styled from "styled-components/macro";
 import { compose, layout, LayoutProps, space, SpaceProps } from "styled-system";
 import { Theme } from "styles/theme";
+import { Statuses } from "typings/generalTypes";
 
 const defaultButtonProps = compose(layout, space);
 
@@ -9,29 +11,21 @@ export interface DefaultButtonProps
     LayoutProps<Theme> {
   type?: "button" | "submit" | "reset";
   onClick?: () => void;
+  status?: Statuses;
+  children: ReactNode;
 }
 
 export type ButtonStyles = Pick<
   DefaultButtonProps,
-  "margin" | "width" | "height" | "padding"
+  "margin" | "width" | "padding"
 >;
 
 export const BaseButton = styled.button<ButtonStyles>`
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
+  display: block;
   padding: "0.5rem 1rem";
-  width: 10rem;
-  border-radius: 0.5rem;
-  border: none;
-  cursor: pointer;
+  width: 100%;
   font-weight: ${({ theme }) => theme.fontWeights.fw700};
-  background-color: #000;
-  color: #fff;
-
-  &:hover {
-    background-color: #333;
-  }
+  cursor: pointer;
 
   && {
     ${defaultButtonProps}

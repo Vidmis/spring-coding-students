@@ -72,5 +72,15 @@ export const applyTextType = (type: TextType, theme: Theme) => {
           font-weight: ${theme.typography.h6.fontWeightMobile};
         }
       `;
+    case "link":
+      return css`
+        font-size: ${theme.typography.link.fontSize};
+        font-weight: ${theme.typography.link.fontWeight};
+        line-height: ${theme.typography.link.lineHeight};
+        color: ${theme.typography.link.color};
+        cursor: ${theme.typography.link.cursor};
+      `;
+    default:
+      return;
   }
 };

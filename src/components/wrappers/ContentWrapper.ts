@@ -6,8 +6,6 @@ import { Box } from "components";
 // interface ConentProps<T> extends GridProps<T> {}
 
 export const ContentWrapper = styled(Box)`
-  margin: 0 auto;
-  padding: 0 1rem;
   max-width: 58rem;
 
   @media ${tablet} {

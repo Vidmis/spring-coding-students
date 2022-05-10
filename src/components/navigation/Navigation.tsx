@@ -11,6 +11,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { Box } from "components/wrappers/Box";
 import { theme } from "styles/theme";
+import { Typography } from "components/typography/Typography";
 
 interface INavListItem {
   menuItem: string;
@@ -18,7 +19,9 @@ interface INavListItem {
 
 const NavListItem = ({ menuItem }: INavListItem) => (
   <Box as='li' p='s10'>
-    <Link to='#'>{menuItem}</Link>
+    <Typography type='link' to='#' color='white'>
+      {menuItem}
+    </Typography>
   </Box>
 );
 
@@ -30,33 +33,24 @@ export const Navigation: React.FC = () => {
       display='flex'
       justifyContent='space-between'
       alignItems='center'
+      mt='s48'
     >
-      <Image src='logoImg' alt='logo' maxWidth='4rem' margin='0.5rem' />
-      <Box as='ul' display='flex'>
+      <Typography type='link' fontWeight='fw600' color='primary'>
+        KILO.RIDE
+      </Typography>
+      <Box className='unList' as='ul' display='flex'>
         {MENU_LIST.map((menuItem: string, index: number) => (
           <NavListItem key={index + menuItem} menuItem={menuItem} />
         ))}
       </Box>
-      <span>
-        <Link to='https://www.facebook.com/' target='_blank'>
-          <FontAwesomeIcon icon={faFacebookF} />
-        </Link>
-        <Link to='https://www.twitter.com/' target='_blank'>
-          <FontAwesomeIcon icon={faTwitter} />
-        </Link>
-        <Link to='https://www.instagram.com/' target='_blank'>
-          <FontAwesomeIcon icon={faInstagram} />
-        </Link>
-      </span>
     </NavigationStyled>
   );
 };
 
 const NavigationStyled = styled(Box)`
-  span {
-    a {
-      margin: 0 0.5rem;
-      color: ${theme.colors.primary};
+  .unList li {
+    &:first-child a {
+      color: ${theme.colors.dark};
     }
   }
 `;

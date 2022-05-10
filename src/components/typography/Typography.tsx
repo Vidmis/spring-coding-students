@@ -1,5 +1,5 @@
-import { Property } from "csstype";
 import React, { ReactNode } from "react";
+import { Property } from "csstype";
 import styled from "styled-components/macro";
 import {
   compose,
@@ -28,7 +28,12 @@ export type TextType =
   | "h4"
   | "h5"
   | "h6"
+  | "ul"
+  | "list"
+  | "link"
+  | "body14"
   | "body16"
+  | "body18"
   | "caption12"
   | "span";
 
@@ -40,7 +45,12 @@ export enum TextTag {
   "h5" = "h5",
   "h6" = "h6",
   "span" = "span",
+  "ul" = "ul",
+  "list" = "li",
+  "link" = "a",
+  "body14" = "p",
   "body16" = "p",
+  "body18" = "p",
   "caption12" = "p",
 }
 
@@ -64,6 +74,8 @@ export interface TextProps
     MaxWidthProps<Theme> {
   color?: Colors;
   type?: TextType;
+  to?: string;
+  cursor?: string;
   textTransform?: Property.TextTransform;
   textDecoration?: Property.TextDecoration;
   onClick?: () => void;

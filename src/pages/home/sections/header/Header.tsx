@@ -1,136 +1,93 @@
 import React from "react";
-import { Container } from "components/wrappers/Container";
-import { FlexWrapper } from "components/wrappers/FlexWrapper";
-import { Image } from "components/Image";
-import { HeaderStyled } from "./HeaderStyled";
-import { Box } from "components";
-import { Typography } from "components/typography/Typography";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCircleArrowRight,
-  faClockFour,
-  faUtensils,
-} from "@fortawesome/free-solid-svg-icons";
-import { BaseButton } from "components/atoms";
+import styled from "styled-components/macro";
+import { Box, Image, Navigation, Typography } from "components";
+import { theme } from "styles/theme";
 
-export const Header: React.FC = () => {
+interface SpecsBoxProps {
+  header?: string;
+  specs?: string;
+  color?: string;
+}
+
+const SpecsBox: React.FC<SpecsBoxProps> = ({ header, specs, color }) => (
+  <Box>
+    <Typography type='body14' fontWeight='fw700' color={color}>
+      {header}
+    </Typography>
+    <Typography type='h4'>{specs}</Typography>
+  </Box>
+);
+
+const Header: React.FC = () => {
   return (
-    <HeaderStyled>
-      <FlexWrapper borderRadius='b24' backgroundColor='cyan' overflow='hidden'>
-        <Container p='s0' width={{ _: "100%", laptop: "50%" }}>
-          <FlexWrapper
-            minWidth='30rem'
-            maxWidth='40rem'
-            height='100%'
-            flexDirection='column'
-            justifyContent='space-between'
-            p='s64'
-          >
-            <Box
-              width='10rem'
-              height='3rem'
-              display='flex'
-              justifyContent='space-evenly'
-              alignItems='center'
-              p='s10'
-              borderRadius='bFull'
-              backgroundColor='white'
-            >
-              <Image src='letterImg' alt='letter' width='1rem' height='1rem' />
-              <span>Hot Recipes</span>
-            </Box>
-            <Box>
-              <Typography type='h5' color='primary'>
-                Spicy delicious chicken wings
-              </Typography>
-            </Box>
-            <Box>
-              <Typography color='primary'>
-                Lorem ipsum dolor sit amet, consectetuipisicing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqut enim
-                ad minim{" "}
-              </Typography>
-            </Box>
-            <FlexWrapper>
-              <Box
-                width='8rem'
-                height='2.5rem'
-                display='flex'
-                justifyContent='space-evenly'
-                alignItems='center'
-                p='s10'
-                mr='s16'
-                borderRadius='bFull'
-                backgroundColor='transparent'
-              >
-                <FontAwesomeIcon icon={faClockFour} />
-                <span>30 Minutes</span>
-              </Box>
+    <>
+      <StyledHeader
+        position='relative'
+        height='100vh'
+        width='100%'
+        overflow='hidden'
+      >
+        <Navigation />
+        <Box
+          className='layer'
+          position='absolute'
+          backgroundColor='primary'
+          minWidth='96rem'
+          height='200rem'
+          maxWidth='100%'
+        ></Box>
+        <Box position='absolute' top='12rem' right='6rem'>
+          <Image src='bikeLandingImg' alt='bike' />
+        </Box>
 
-              <Box
-                width='8rem'
-                height='2.5rem'
-                display='flex'
-                justifyContent='space-evenly'
-                alignItems='center'
-                p='s10'
-                borderRadius='bFull'
-                backgroundColor='transparent'
-              >
-                <FontAwesomeIcon icon={faUtensils} />
-                <span>Chicken</span>
-              </Box>
-            </FlexWrapper>
-
-            <FlexWrapper justifyContent='space-between' alignItems='center'>
-              <Box
-                width='10rem'
-                height='4.5rem'
-                display='flex'
-                justifyContent='space-around'
-                alignItems='center'
-                p='s0'
-                borderRadius='bFull'
-              >
-                <Box width='50px' height='50px'>
-                  <Image src='johnImg' alt='profile' />
-                </Box>
-                <FlexWrapper flexDirection='column'>
-                  <Typography fontSize='fs14' fontWeight='fw700'>
-                    John Doe
-                  </Typography>
-                  <Typography fontSize='fs10' fontWeight='fw400'>
-                    15 March 2022
-                  </Typography>
-                </FlexWrapper>
-              </Box>
-
-              <BaseButton color='white' height='3rem'>
-                <span>View Recipes</span>
-                <FontAwesomeIcon icon={faCircleArrowRight} />
-              </BaseButton>
-            </FlexWrapper>
-          </FlexWrapper>
-        </Container>
-
-        <Container
-          p='s0'
-          width={{ _: "100%", laptop: "50%" }}
-          display={{ _: "none", laptop: "block" }}
-          position='relative'
-        >
+        <Box position='absolute' bottom='2rem' right='24rem'>
           <Box
-            width='6rem'
-            height='6rem'
-            position='absolute'
-            top='2rem'
-            left='-2rem'
+            display='flex'
+            justifyContent='space-between'
+            width='32rem'
+            ml='s48'
           >
-            <Image src='badgeImg' alt='badge' />
+            <SpecsBox header='Battery Range' specs='70 Km' color='gray' />
+            <Box>
+              <Typography type='body14' fontWeight='fw700' color='dark'>
+                Charging Time
+              </Typography>
+              <Typography type='h4' color='white'>
+                3.5 Hours
+              </Typography>
+            </Box>
           </Box>
-          <Image src='bakedChickenImg' alt='baked_chicken' />
-        </Container>
-      </FlexWrapper>
-    </HeaderStyled>
+
+          <Box display='flex' justifyContent='space-between' width='32rem'>
+            <Box>
+              <Typography type='body14' fontWeight='fw700' color='gray'>
+                Assist Speed
+              </Typography>
+              <Typography type='h4'>25 Kmph</Typography>
+            </Box>
+            <Box>
+              <Typography type='body14' fontWeight='fw700' color='dark'>
+                Weight
+              </Typography>
+              <Typography type='h4' color='white'>
+                8.4 Kg
+              </Typography>
+            </Box>
+          </Box>
+        </Box>
+      </StyledHeader>
+    </>
   );
 };
+
+export default Header;
+
+const StyledHeader = styled(Box)`
+  .layer {
+    transform: rotate(19deg);
+    top: 0;
+    box-shadow: -10px 0px 50px ${theme.colors.gray};
+    right: -40.4rem;
+    z-index: -10;
+  }
+`;

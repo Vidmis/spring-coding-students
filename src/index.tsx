@@ -10,6 +10,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     list-style-type: none;
     text-decoration: none;
+    color: ${theme.colors.dark};
 }
 body {
     overflow: hidden auto;

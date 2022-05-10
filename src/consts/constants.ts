@@ -1,3 +1,1 @@
-import { spaghettiImg } from "assets/images/grid_imgs/mermeshel.png";
-
-export const MENU_LIST = ["Home", "Bicycles", "Blog", "Contact", "About us"];
+export const MENU_LIST = ["Bikes", "About us", "Service & Support"];

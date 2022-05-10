@@ -10,12 +10,10 @@ type BreakpointsProp<T = string> = {
 
 const colors = {
   white: "#ffffff",
-  primary: "#101326",
-  secondary: "#29C0CD",
-  accent: "#E34578",
+  primary: "#FE6767",
+  dark: "#545454",
+  gray: "#B6B6B6",
   transparent: "#0000000d",
-  cyan: "#E7FAFE",
-  grey: "#666",
 };
 
 const breakpoints: BreakpointsProp = {
@@ -119,15 +117,15 @@ export const theme = {
     },
     h4: {
       fontSize: "3rem",
-      fontWeight: 600,
-      lineHeight: "3.9375rem",
+      fontWeight: 700,
+      lineHeight: "60px",
       fontSizeMobile: "2rem",
       fontWeightMobile: 600,
       lineHeightMobile: "2.625rem",
     },
     h5: {
       fontSize: "2.5rem",
-      fontWeight: 600,
+      fontWeight: 700,
       lineHeight: "3.25rem",
       fontSizeMobile: "1.625rem",
       fontWeightMobile: 600,
@@ -138,8 +136,38 @@ export const theme = {
       fontWeight: 600,
       lineHeight: "2.625rem",
       fontSizeMobile: "1.5rem",
-      fontWeightMobile: 600,
+      fontWeightMobile: 500,
       lineHeightMobile: "2rem",
+    },
+    bodyB14: {
+      fontWeight: 700,
+      fontSize: "14px",
+      lineHeight: "21px",
+    },
+    body14: {
+      fontSize: "0.875rem",
+      lineHeight: "22px",
+      fontWeight: 400,
+      color: colors.white,
+    },
+    body16: {
+      fontSize: "1rem",
+      lineHeight: "24px",
+      fontWeight: 400,
+      color: colors.white,
+    },
+    body18: {
+      fontSize: "1.125rem",
+      lineHeight: "26px",
+      fontWeight: 400,
+      color: colors.white,
+    },
+    link: {
+      fontSize: "1.5rem",
+      fontWeight: 500,
+      lineHeight: "2.25rem",
+      color: colors.dark,
+      cursor: "pointer",
     },
   },
   zIndices: { base: 0, upperElement: 1, modal: 10, loader: 11 },

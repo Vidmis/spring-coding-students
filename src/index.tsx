@@ -1,6 +1,8 @@
 import React, { StrictMode } from "react";
+import { Provider } from "react-redux";
 import { createGlobalStyle, ThemeProvider } from "styled-components/macro";
 import { theme } from "styles/theme";
+import { store } from "state/store";
 
 const GlobalStyle = createGlobalStyle`
 * {
@@ -19,9 +21,11 @@ html {
 
 export const wrapRootElement = ({ element }: any) => (
   <StrictMode>
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      {element}
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        {element}
+      </ThemeProvider>
+    </Provider>
   </StrictMode>
 );

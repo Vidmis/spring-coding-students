@@ -1,8 +1,8 @@
-import logoImg from "assets/images/pepeLogo.png";
-import bikeLandingImg from "assets/images/bikeLanding.png";
+import roadBikeImg from "assets/images/roadBike.png";
+import mtbBikeImg from "assets/images/mountainBike.png";
 
 export type Visuals = keyof typeof visuals;
 export const visuals: Record<string, string> = {
-  logoImg,
-  bikeLandingImg,
+  roadBikeImg,
+  mtbBikeImg,
 };

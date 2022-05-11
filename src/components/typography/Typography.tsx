@@ -34,6 +34,9 @@ export type TextType =
   | "body14"
   | "body16"
   | "body18"
+  | "body20"
+  | "body24"
+  | "body28"
   | "caption12"
   | "span";
 
@@ -51,6 +54,9 @@ export enum TextTag {
   "body14" = "p",
   "body16" = "p",
   "body18" = "p",
+  "body20" = "p",
+  "body24" = "p",
+  "body28" = "p",
   "caption12" = "p",
 }
 

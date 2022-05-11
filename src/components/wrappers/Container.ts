@@ -25,7 +25,6 @@ interface ContainerProps<T>
 
 export const Container = styled(Box)<ContainerProps<Theme>>`
   margin: 0 auto;
-  padding: 0 1rem;
   max-width: 72rem;
 
   @media ${tablet} {

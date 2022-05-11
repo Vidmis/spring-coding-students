@@ -72,6 +72,48 @@ export const applyTextType = (type: TextType, theme: Theme) => {
           font-weight: ${theme.typography.h6.fontWeightMobile};
         }
       `;
+    case "body14":
+      return css`
+        font-size: ${theme.typography.body14.fontSize};
+        line-height: ${theme.typography.body14.lineHeight};
+        font-weight: ${theme.typography.body14.fontWeight};
+        color: ${theme.typography.body14.color};
+      `;
+    case "body16":
+      return css`
+        font-size: ${theme.typography.body16.fontSize};
+        line-height: ${theme.typography.body16.lineHeight};
+        font-weight: ${theme.typography.body16.fontWeight};
+        color: ${theme.typography.body16.color};
+      `;
+    case "body18":
+      return css`
+        font-size: ${theme.typography.body18.fontSize};
+        line-height: ${theme.typography.body18.lineHeight};
+        font-weight: ${theme.typography.body18.fontWeight};
+        color: ${theme.typography.body18.color};
+      `;
+    case "body20":
+      return css`
+        font-size: ${theme.typography.body20.fontSize};
+        line-height: ${theme.typography.body20.lineHeight};
+        font-weight: ${theme.typography.body20.fontWeight};
+        color: ${theme.typography.body20.color};
+      `;
+    case "body24":
+      return css`
+        font-size: ${theme.typography.body24.fontSize};
+        line-height: ${theme.typography.body24.lineHeight};
+        font-weight: ${theme.typography.body24.fontWeight};
+        color: ${theme.typography.body24.color};
+      `;
+    case "body28":
+      return css`
+        font-size: ${theme.typography.body28.fontSize};
+        line-height: ${theme.typography.body28.lineHeight};
+        font-weight: ${theme.typography.body28.fontWeight};
+        color: ${theme.typography.body28.color};
+      `;
     case "link":
       return css`
         font-size: ${theme.typography.link.fontSize};

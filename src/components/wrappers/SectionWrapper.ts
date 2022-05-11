@@ -50,9 +50,6 @@ interface SectionWrapperProps<T>
     MaxWidthProps<T> {}
 
 export const SectionWrapper = styled.section<SectionWrapperProps<Theme>>`
-  position: relative;
-  background-color: #fff;
-
   && {
     ${sectionProps}
   }

@@ -9,7 +9,8 @@ export * from "./wrappers/SectionWrapper";
 // components
 export * from "./navigation/Navigation";
 
-//texts
+// buttons
+
 // export * from './texts/h1';
 export * from "./typography/Typography";
 

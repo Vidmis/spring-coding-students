@@ -18,7 +18,7 @@ interface INavListItem {
 }
 
 const NavListItem = ({ menuItem }: INavListItem) => (
-  <Box as='li' p='s10'>
+  <Box as='li' p='s10' mr='s48'>
     <Typography type='link' to='#' color='white'>
       {menuItem}
     </Typography>
@@ -28,7 +28,6 @@ const NavListItem = ({ menuItem }: INavListItem) => (
 export const Navigation: React.FC = () => {
   return (
     <NavigationStyled
-      mx='s80'
       fontSize='fs16'
       display='flex'
       justifyContent='space-between'

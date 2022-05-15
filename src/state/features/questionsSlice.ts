@@ -8,14 +8,17 @@ const initialState: QuestionState = {
 };
 
 const questionSlice = createSlice({
-  name: "user",
+  name: "question",
   initialState,
   reducers: {
     setQuizQuestions: (state, actions) => {
       state.questionText = actions.payload;
     },
+    setQuizAnswers: (state, actions) => {
+      state.answerOptions = actions.payload;
+    },
   },
 });
 
-export const { setQuizQuestions } = questionSlice.actions;
+export const { setQuizQuestions, setQuizAnswers } = questionSlice.actions;
 export default questionSlice;

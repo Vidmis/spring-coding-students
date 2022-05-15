@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ContentWrapper } from "components";
 import { useAppDispatch, useAppSelector } from "state/hooks";
 import { setQuizQuestions } from "state/features/questionsSlice";
+import { fetchQuestionsActions } from "state/sagasActions";
 
 {
   /* <input
@@ -24,14 +25,10 @@ const Home: React.FC = () => {
   const selectQuizQ = useAppSelector((state) => state.question);
 
   console.log(selectQuizQ);
-  // useEffect(() => {
-  //   const questionData = dispatch(
-  //     setQuizQuestions({
-  //       maName: "vidmintis",
-  //     })
-  //   );
-  //   console.log("questionData", questionData.payload);
-  // }, []);
+  useEffect(() => {
+    const questionData = dispatch(fetchQuestionsActions());
+    console.log("questionData", questionData.payload);
+  }, []);
 
   return (
     <>

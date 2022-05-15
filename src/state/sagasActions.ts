@@ -1,5 +1,5 @@
 import { createAction } from "@reduxjs/toolkit";
 
-const fetchQuestionsPrefix = "question/GET_QUESTIONS";
+const fetchQuestionsPrefix = "questions/GET_QUESTIONS";
 
 export const fetchQuestionsActions = createAction(fetchQuestionsPrefix);

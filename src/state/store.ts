@@ -1,9 +1,5 @@
-import {
-  AnyAction,
-  CombinedState,
-  combineReducers,
-  configureStore,
-} from "@reduxjs/toolkit";
+import { combineReducers, CombinedState, AnyAction } from "redux";
+import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import createSagaMiddleware from "@redux-saga/core";
 import questionSlice from "./features/questionsSlice";
 import { QuestionState } from "./types";

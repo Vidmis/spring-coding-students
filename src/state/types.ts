@@ -1,6 +1,11 @@
+export interface IAnswerOptions {
+  answerText: string;
+  sizes?: string[];
+  bikeTypes?: string[];
+}
 export interface IQuestionsData {
   questionText: string;
-  answerOptions: [];
+  answerOptions: IAnswerOptions[];
 }
 
 export interface IQuestionState {

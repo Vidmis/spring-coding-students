@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ContentWrapper } from "components";
 import { useAppDispatch, useAppSelector } from "state/hooks";
 import { fetchQuestionsActions } from "state/sagasActions";
-import { IQuestionsData } from "state/types";
+import { IAnswerOptions, IQuestionsData } from "state/types";
 import { Button } from "components/atoms";
 
 {
@@ -32,28 +32,30 @@ const Home: React.FC = () => {
     dispatch(fetchQuestionsActions());
   }, []);
 
-  const handleSelectAnswer = (answer: string) => {
+  const handleSelectAnswer = (answer: string[]) => {
     if (selectedAnswer.includes(answer)) {
       setSelectedAnswer(selectedAnswer.filter((answ) => answ !== answer));
     } else {
       setSelectedAnswer([...selectedAnswer, answer]);
     }
   };
-
-  console.log("selectedAnswer", selectedAnswer);
+  console.log(selectedAnswer);
+  console.log(quizQA);
 
   return (
     <>
       <ContentWrapper maxWidth='100%'>
-        {quizQA[2]?.questionText}
-        {quizQA[2]?.answerOptions.map((answer: string, index: number) => (
-          <Button
-            onClick={() => handleSelectAnswer(answer)}
-            key={index + answer.slice(0, 2)}
-          >
-            {answer}
-          </Button>
-        ))}
+        {quizQA[1]?.questionText}
+        {quizQA[1]?.answerOptions.map(
+          (answer: IAnswerOptions, index: number) => (
+            <Button
+              onClick={() => handleSelectAnswer(answer.bikeTypes)}
+              key={index}
+            >
+              {answer.answerText}
+            </Button>
+          )
+        )}
       </ContentWrapper>
     </>
   );

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { ContentWrapper } from "components";
 import { useAppDispatch, useAppSelector } from "state/hooks";
-import { setQuizQuestions } from "state/features/questionsSlice";
 import { fetchQuestionsActions } from "state/sagasActions";
+import { IQuestionsData } from "state/types";
+import { Button } from "components/atoms";
 
 {
   /* <input
@@ -14,26 +15,45 @@ import { fetchQuestionsActions } from "state/sagasActions";
       /> */
 }
 
-const QuizBox: React.FC = () => {
+const QuizBox: React.FC = ({ children }) => {
   const [isSelected, setIsSelected] = useState();
 
-  return <li></li>;
+  return <Button>{children}</Button>;
 };
 
 const Home: React.FC = () => {
+  const [selectedAnswer, setSelectedAnswer] = useState([]);
   const dispatch = useAppDispatch();
-  const selectQuizQ = useAppSelector((state) => state.question);
+  const quizQA = useAppSelector(
+    ({ question }) => question.questionsData
+  ) as IQuestionsData[];
 
-  console.log(selectQuizQ);
   useEffect(() => {
-    const questionData = dispatch(fetchQuestionsActions());
-    console.log("questionData", questionData.payload);
+    dispatch(fetchQuestionsActions());
   }, []);
+
+  const handleSelectAnswer = (answer: string) => {
+    if (selectedAnswer.includes(answer)) {
+      setSelectedAnswer(selectedAnswer.filter((answ) => answ !== answer));
+    } else {
+      setSelectedAnswer([...selectedAnswer, answer]);
+    }
+  };
+
+  console.log("selectedAnswer", selectedAnswer);
 
   return (
     <>
       <ContentWrapper maxWidth='100%'>
-        <QuizBox></QuizBox>
+        {quizQA[2]?.questionText}
+        {quizQA[2]?.answerOptions.map((answer: string, index: number) => (
+          <Button
+            onClick={() => handleSelectAnswer(answer)}
+            key={index + answer.slice(0, 2)}
+          >
+            {answer}
+          </Button>
+        ))}
       </ContentWrapper>
     </>
   );

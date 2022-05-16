@@ -1,4 +1,8 @@
-export interface QuestionState {
+export interface IQuestionsData {
   questionText: string;
-  answerOptions: string[];
+  answerOptions: [];
+}
+
+export interface IQuestionState {
+  questionsData: IQuestionsData[];
 }

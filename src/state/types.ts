@@ -1,7 +1,7 @@
 export interface IAnswerOptions {
   answerText: string;
   sizes?: string[];
-  bikeTypes?: string[];
+  bikeTypes: string[];
 }
 export interface IQuestionsData {
   questionText: string;

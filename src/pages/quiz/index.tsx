@@ -23,6 +23,9 @@ const QuizBox: React.FC = ({ children }) => {
 
 const Home: React.FC = () => {
   const [selectedAnswer, setSelectedAnswer] = useState([]);
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  let nextQuestion = 1;
+  const [score, setScore] = useState(0);
   const dispatch = useAppDispatch();
   const quizQA = useAppSelector(
     ({ question }) => question.questionsData
@@ -34,28 +37,34 @@ const Home: React.FC = () => {
 
   const handleSelectAnswer = (answer: string[]) => {
     if (selectedAnswer.includes(answer)) {
-      setSelectedAnswer(selectedAnswer.filter((answ) => answ !== answer));
+      setSelectedAnswer(selectedAnswer.filter((item) => item !== answer));
     } else {
       setSelectedAnswer([...selectedAnswer, answer]);
     }
   };
+
   console.log(selectedAnswer);
-  console.log(quizQA);
+  console.log(nextQuestion);
 
   return (
     <>
       <ContentWrapper maxWidth='100%'>
-        {quizQA[1]?.questionText}
-        {quizQA[1]?.answerOptions.map(
-          (answer: IAnswerOptions, index: number) => (
-            <Button
-              onClick={() => handleSelectAnswer(answer.bikeTypes)}
-              key={index}
-            >
-              {answer.answerText}
-            </Button>
-          )
-        )}
+        {quizQA[currentQuestion]?.questionText}
+        <ul>
+          {quizQA[currentQuestion]?.answerOptions.map(
+            (answer: IAnswerOptions, index: number) => (
+              <li
+                onClick={() => handleSelectAnswer(answer.bikeTypes)}
+                key={index}
+              >
+                {answer.answerText}
+              </li>
+            )
+          )}
+        </ul>
+        <Button onClick={() => setCurrentQuestion(currentQuestion + 1)}>
+          Next Question
+        </Button>
       </ContentWrapper>
     </>
   );

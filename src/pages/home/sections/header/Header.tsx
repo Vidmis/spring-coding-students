@@ -3,6 +3,7 @@ import styled from "styled-components/macro";
 import { Box, ContentWrapper, Image, Navigation, Typography } from "components";
 import { Theme, theme } from "styles/theme";
 import { Button } from "components/atoms";
+import { navigate } from "gatsby";
 
 interface SpecsBoxProps {
   header?: string;
@@ -62,7 +63,13 @@ const Header: React.FC = () => {
           </Box>
 
           <Box>
-            <Button variant='primary' mr='s32'>
+            <Button
+              onClick={() => {
+                navigate("/quiz");
+              }}
+              variant='primary'
+              mr='s32'
+            >
               Take Quiz
             </Button>
             <Button variant='secondary'>Learn More</Button>

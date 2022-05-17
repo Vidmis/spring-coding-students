@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FormEvent } from "react";
 import styled from "styled-components/macro";
 import { Box } from "components";
 
@@ -8,9 +8,10 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   placeholder?: string;
   id?: string;
   name?: string;
-  value?: string | number;
+  value?: string | number | null;
   required?: any;
-  onChange?: () => void;
+  onChange?: (e: FormEvent<HTMLInputElement>) => void | (() => void);
+  autocomplete?: string;
 }
 
 export const Input = styled(Box).attrs({ as: "input" })<InputProps>``;

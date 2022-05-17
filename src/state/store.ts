@@ -1,16 +1,19 @@
 import { combineReducers, CombinedState, AnyAction } from "redux";
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import createSagaMiddleware from "@redux-saga/core";
-import questionSlice from "./features/questionsSlice";
-import { QuestionState } from "./types";
+import questionReducer from "./features/questionsSlice";
+import stepReducer from "./features/stepSlice";
+import { IQuestionState } from "./types";
 import rootSaga from "./rootSaga";
 
 export interface RootState {
-  question: QuestionState;
+  question: IQuestionState;
+  step: number;
 }
 
 const combinedReducer = combineReducers<CombinedState<RootState>>({
-  question: questionSlice.reducer,
+  question: questionReducer.reducer,
+  step: stepReducer,
 });
 
 export const rootReducer = (state: any, action: AnyAction) =>
@@ -24,8 +27,5 @@ export const store = configureStore({
 });
 
 sagaMiddleware.run(rootSaga);
-
-// Infer the `RootState` and `AppDispatch` types from the store itself
+export type AppDispatch = typeof store.dispatch;
 // export type RootState = ReturnType<typeof store.getState>;
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
-// export type AppDispatch = typeof store.dispatch;

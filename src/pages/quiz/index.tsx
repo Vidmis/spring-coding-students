@@ -8,6 +8,8 @@ import { navigate } from "gatsby";
 import AnswerInputCard from "./layouts/AnswerInputCard";
 import AnswerCard from "./layouts/AnswerInputCard";
 
+//// npm i redux-persist --- skirtas saugoti reduxo state'a i local storage
+
 const QuizBox: React.FC = ({ children }) => {
   const [isSelected, setIsSelected] = useState();
 

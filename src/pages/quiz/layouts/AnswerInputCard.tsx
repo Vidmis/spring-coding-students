@@ -1,22 +1,20 @@
-import React, {
-  useState,
-  useEffect,
-  HTMLInputTypeAttribute,
-  FormEvent,
-} from "react";
+import React, { useState, FormEvent } from "react";
 import { Box, ContentWrapper, Typography } from "components";
 import { useAppDispatch, useAppSelector } from "state/hooks";
 import { IQuestionsData } from "state/types";
 import { Button, Input } from "components/atoms";
 import useNavigation from "hooks/useNavigation";
+import { setUserHeight } from "state/features/userAnswersSlice";
 
 interface IAnswerInputCard {
   quizQA: IQuestionsData[];
+  dataStep: number;
 }
 
-const AnswerInputCard: React.FC<IAnswerInputCard> = ({ quizQA }) => {
+const AnswerInputCard: React.FC<IAnswerInputCard> = ({ quizQA, dataStep }) => {
   const [personHeight, setPersonHeight] = useState<string>("");
   const [isDisablet, setIsDisabled] = useState(true);
+  const dispatch = useAppDispatch();
   const { onNextStep } = useNavigation();
 
   const handleChange = (
@@ -32,7 +30,8 @@ const AnswerInputCard: React.FC<IAnswerInputCard> = ({ quizQA }) => {
     }
   };
 
-  const handleClick = () => {
+  const handleNextStep = () => {
+    dispatch(setUserHeight(personHeight));
     onNextStep();
   };
 
@@ -41,9 +40,9 @@ const AnswerInputCard: React.FC<IAnswerInputCard> = ({ quizQA }) => {
   return (
     <>
       <ContentWrapper maxWidth='100%'>
-        {!quizQA[1]?.answerOptions && (
+        {!quizQA[dataStep]?.answerOptions && (
           <Box>
-            <Typography type='h5'>{quizQA[1]?.questionText}</Typography>
+            <Typography type='h5'>{quizQA[dataStep]?.questionText}</Typography>
             <Input
               name='height'
               type='number'
@@ -55,10 +54,7 @@ const AnswerInputCard: React.FC<IAnswerInputCard> = ({ quizQA }) => {
             />
           </Box>
         )}
-        {/* <Button onClick={() => setCurrentQuestion(currentQuestion + 1)}>
-          Next Question
-        </Button> */}
-        <Button disabled={isDisablet} onClick={() => handleClick()}>
+        <Button disabled={isDisablet} onClick={handleNextStep}>
           Continue
         </Button>
       </ContentWrapper>

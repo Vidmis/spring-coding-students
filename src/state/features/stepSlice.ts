@@ -1,10 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { IStepState } from "state/types";
 
-interface StepState {
-  value: number;
-}
-
-const initialState: StepState = { value: 0 };
+const initialState: IStepState = { value: 0 };
 
 export const stepSlice = createSlice({
   name: "stepCounter",
@@ -26,4 +23,4 @@ export const stepSlice = createSlice({
 });
 
 export const { nextStep, prevStep, firstStep, chooseStep } = stepSlice.actions;
-export default stepSlice.reducer;
+export default stepSlice;

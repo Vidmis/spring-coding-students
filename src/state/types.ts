@@ -1,3 +1,5 @@
+import { rootReducer } from "./store";
+
 export interface IAnswerOptions {
   answerText: string;
   sizes?: string[];
@@ -11,3 +13,14 @@ export interface IQuestionsData {
 export interface IQuestionState {
   questionsData: IQuestionsData[];
 }
+
+export interface IStepState {
+  value: number;
+}
+
+export interface IUserAnswerSlice {
+  userHeight: number;
+  bikeTypes: string[];
+}
+
+export type AppState = ReturnType<typeof rootReducer>;

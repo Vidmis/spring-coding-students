@@ -1,64 +1,44 @@
-import React, { useState, useEffect } from "react";
-import { Box, ContentWrapper, Typography } from "components";
-import { useAppDispatch, useAppSelector } from "state/hooks";
+import React, { useEffect } from "react";
+import { ContentWrapper } from "components";
+import { useAppDispatch } from "state/hooks";
 import { fetchQuestionsActions } from "state/sagasActions";
-import { IAnswerOptions, IQuestionsData } from "state/types";
-import { Button } from "components/atoms";
-import { navigate } from "gatsby";
 import AnswerInputCard from "./layouts/AnswerInputCard";
-import AnswerCard from "./layouts/AnswerInputCard";
-
-//// npm i redux-persist --- skirtas saugoti reduxo state'a i local storage
-
-const QuizBox: React.FC = ({ children }) => {
-  const [isSelected, setIsSelected] = useState();
-
-  return <Button>{children}</Button>;
-};
+import AnswerCard from "./layouts/AnswerCard";
+import { useSelector } from "react-redux";
+import { selectQuizQA, selectStep } from "state/selectors";
+import { setBikeTypes } from "state/features/userAnswersSlice";
+import AdviceCard from "./layouts/AdviceCard";
 
 const Home: React.FC = () => {
-  const [selectedAnswer, setSelectedAnswer] = useState([]);
   const dispatch = useAppDispatch();
-  const quizQA = useAppSelector(
-    ({ question }) => question.questionsData
-  ) as IQuestionsData[];
-  const step = useAppSelector(({ step }) => step.value);
-  console.log(step);
+  const quizQA = useSelector(selectQuizQA);
+  const step = useSelector(selectStep);
 
   useEffect(() => {
+    dispatch(setBikeTypes([]));
     dispatch(fetchQuestionsActions());
   }, []);
-
-  const handleSelectAnswer = (answer: string[]) => {
-    if (selectedAnswer.includes(answer)) {
-      setSelectedAnswer(selectedAnswer.filter((item) => item !== answer));
-    } else {
-      setSelectedAnswer([...selectedAnswer, answer]);
-    }
-  };
 
   const onRenderStep = () => {
     switch (step) {
       case 0:
-        return <AnswerCard quizQA={quizQA} />;
+        return <AnswerCard quizQA={quizQA} dataStep={step} />;
       case 1:
-        return <AnswerInputCard quizQA={quizQA} />;
+        return <AnswerInputCard quizQA={quizQA} dataStep={step} />;
       case 2:
-        return null;
+        return <AdviceCard />;
+      case 3:
+        return <AnswerCard quizQA={quizQA} dataStep={step - 1} />;
+      case 4:
+        return (
+          <AnswerCard quizQA={quizQA} isLastCard={true} dataStep={step - 1} />
+        );
     }
   };
 
-  console.log(selectedAnswer);
-
   return (
     <>
-      <ContentWrapper maxWidth='100%'>
-        {onRenderStep(1)}
-        {/* <Button onClick={() => setCurrentQuestion(currentQuestion + 1)}>
-          Next Question
-        </Button> */}
-        {/* <Button onClick={() => navigate("/checkout")}>Next Question</Button> */}
-      </ContentWrapper>
+      <ContentWrapper maxWidth='100%'>{onRenderStep()}</ContentWrapper>
     </>
   );
 };

@@ -1,5 +1,5 @@
-import { IQuestionState } from "./../types";
 import { createSlice } from "@reduxjs/toolkit";
+import { IQuestionState } from "../types";
 // import { QuizQuestions } from "./types";
 
 const initialState: IQuestionState = {

@@ -1,30 +1,30 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { ContentWrapper } from "components";
 import { useAppDispatch, useAppSelector } from "state/hooks";
-import { fetchQuestionsActions } from "state/sagasActions";
 import { IAnswerOptions, IQuestionsData } from "state/types";
 import { Button } from "components/atoms";
 import { navigate } from "gatsby";
+import { selectStep, selectUserBikeTypes } from "state/selectors";
+import useNavigation from "hooks/useNavigation";
+import { setBikeTypes } from "state/features/userAnswersSlice";
 
-const QuizBox: React.FC = ({ children }) => {
-  const [isSelected, setIsSelected] = useState();
+interface IAnswerCard {
+  quizQA: IQuestionsData[];
+  isLastCard?: boolean;
+  dataStep: number;
+}
 
-  return <Button>{children}</Button>;
-};
-
-const Home: React.FC = () => {
-  const [selectedAnswer, setSelectedAnswer] = useState([]);
-  const [currentQuestion, setCurrentQuestion] = useState(0);
+const AnswerCard: React.FC<IAnswerCard> = ({
+  quizQA,
+  isLastCard,
+  dataStep,
+}) => {
+  const [selectedAnswer, setSelectedAnswer] = useState<Array<string>>([]);
+  const { onNextStep } = useNavigation();
   const dispatch = useAppDispatch();
-  const quizQA = useAppSelector(
-    ({ question }) => question.questionsData
-  ) as IQuestionsData[];
+  const answers = useAppSelector(selectUserBikeTypes);
 
-  useEffect(() => {
-    dispatch(fetchQuestionsActions());
-  }, []);
-
-  const handleSelectAnswer = (answer: string[]) => {
+  const handleSelectAnswer = (answer: Array<string>) => {
     if (selectedAnswer.includes(answer)) {
       setSelectedAnswer(selectedAnswer.filter((item) => item !== answer));
     } else {
@@ -32,14 +32,20 @@ const Home: React.FC = () => {
     }
   };
 
-  console.log(selectedAnswer);
+  const handleNextStep = () => {
+    dispatch(setBikeTypes([...answers, selectedAnswer]));
+    setSelectedAnswer([]);
+    !isLastCard ? onNextStep() : navigate("/checkout");
+  };
+
+  console.log(isLastCard);
 
   return (
     <>
       <ContentWrapper maxWidth='100%'>
-        {quizQA[currentQuestion]?.questionText}
+        {quizQA[dataStep]?.questionText}
         <ul>
-          {quizQA[currentQuestion]?.answerOptions.map(
+          {quizQA[dataStep]?.answerOptions.map(
             (answer: IAnswerOptions, index: number) => (
               <li
                 onClick={() => handleSelectAnswer(answer.bikeTypes)}
@@ -50,13 +56,10 @@ const Home: React.FC = () => {
             )
           )}
         </ul>
-        {/* <Button onClick={() => setCurrentQuestion(currentQuestion + 1)}>
-          Next Question
-        </Button> */}
-        <Button onClick={() => navigate("/checkout")}>Next Question</Button>
+        <Button onClick={handleNextStep}>Submit</Button>
       </ContentWrapper>
     </>
   );
 };
 
-export default Home;
+export default AnswerCard;

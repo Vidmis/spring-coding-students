@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from "axios";
+import axios, { AxiosError, AxiosResponse } from "axios";
 import { put, takeEvery } from "redux-saga/effects";
 import { setQuizData } from "./features/questionsSlice";
 import { fetchQuestionsActions } from "./sagasActions";
@@ -10,7 +10,8 @@ export function* fetchQuestionsSaga() {
     const { data }: AxiosResponse = yield axios.get(url);
     yield put(setQuizData(data));
   } catch (err) {
-    yield console.log(err);
+    const errResp = (err as AxiosError).response;
+    yield console.log(errResp);
   }
 }
 

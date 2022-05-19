@@ -21,14 +21,17 @@ const Checkout: React.FC = () => {
     return bikeMatch;
   }, {});
 
-  let obj = { a: 4, b: 0.5, c: 0.35, d: 5 };
+  let obj = {
+    road: 4,
+    mtb: 6,
+    c: 1,
+    d: 1,
+  };
 
-  let arr = Object.keys(obj);
-  let know = arr.indexOf("d");
-  let min = Math.min(...arr);
-  let max = Math.max(...arr);
+  // let arr = Object.keys(obj);
+  // let min = Math.min(...arr);
+  // let max = Math.max(...arr);
 
-  console.log(know);
   // Object.keys(sortedBikes): Object.values(sortedBikes),
 
   console.log(sortedBikes[bike.GRAVEL]);
@@ -36,7 +39,7 @@ const Checkout: React.FC = () => {
   return (
     <div>
       <Typography type='h2'>Checkout</Typography>
-      {<Box></Box>}
+      <Box></Box>
     </div>
   );
 };

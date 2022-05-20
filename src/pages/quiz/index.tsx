@@ -24,7 +24,7 @@ const Home: React.FC = () => {
       case 0:
         return <AnswerCard quizQA={quizQA} dataStep={step} />;
       case 1:
-        return <AnswerInputCard quizQA={quizQA} dataStep={step} />;
+        return <AnswerCard quizQA={quizQA} dataStep={step} />;
       case 2:
         return <AdviceCard />;
       case 3:

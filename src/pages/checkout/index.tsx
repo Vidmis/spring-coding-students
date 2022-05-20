@@ -14,32 +14,23 @@ const Checkout: React.FC = () => {
   const answers = useAppSelector(selectUserBikeTypes);
 
   const sortedBikes = answers.flat(2).reduce((bikeMatch, bike) => {
-    if (bikeMatch[bike] == null) {
-      bikeMatch[bike] = 0;
-    }
-    bikeMatch[bike] = bikeMatch[bike] + 1;
+    bikeMatch[bike] = (bikeMatch[bike] || 0) + 1;
     return bikeMatch;
   }, {});
 
-  let obj = {
-    road: 4,
-    mtb: 6,
-    c: 1,
-    d: 1,
-  };
+  let bestBikeMatch = Object.keys(sortedBikes).reduce((prevBike, currBike) =>
+    sortedBikes[prevBike] > sortedBikes[currBike] ? prevBike : currBike
+  );
 
-  // let arr = Object.keys(obj);
-  // let min = Math.min(...arr);
-  // let max = Math.max(...arr);
-
-  // Object.keys(sortedBikes): Object.values(sortedBikes),
-
-  console.log(sortedBikes[bike.GRAVEL]);
+  console.log("bestBikeMatch", bestBikeMatch);
+  console.log("object", sortedBikes);
 
   return (
     <div>
       <Typography type='h2'>Checkout</Typography>
-      <Box></Box>
+      <Typography type='body18'>
+        Best bike match: {bestBikeMatch.toUpperCase()}
+      </Typography>
     </div>
   );
 };

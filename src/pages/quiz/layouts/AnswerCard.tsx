@@ -25,6 +25,7 @@ const AnswerCard: React.FC<IAnswerCard> = ({
   const answers = useAppSelector(selectUserBikeTypes);
 
   const handleSelectAnswer = (answer: Array<string>) => {
+    console.log(answer);
     if (selectedAnswer.includes(answer)) {
       setSelectedAnswer(selectedAnswer.filter((item) => item !== answer));
     } else {
@@ -48,7 +49,7 @@ const AnswerCard: React.FC<IAnswerCard> = ({
           {quizQA[dataStep]?.answerOptions.map(
             (answer: IAnswerOptions, index: number) => (
               <li
-                onClick={() => handleSelectAnswer(answer.bikeTypes)}
+                onClick={() => handleSelectAnswer(answer.bikeType)}
                 key={index}
               >
                 {answer.answerText}

@@ -18,18 +18,23 @@ const Checkout: React.FC = () => {
     return bikeMatch;
   }, {});
 
-  let bestBikeMatch = Object.keys(sortedBikes).reduce((prevBike, currBike) =>
-    sortedBikes[prevBike] > sortedBikes[currBike] ? prevBike : currBike
+  // let bestBikeMatch = Object.keys(sortedBikes).reduce((prevBike, currBike) => {
+  //   sortedBikes[currBike] == (sortedBikes[currBike] || 0) + 1;
+  //   return sortedBikes;
+  // });
+
+  const matchingBikes = Object.keys(sortedBikes).filter(
+    (bike: string) =>
+      sortedBikes[bike] === Math.max.apply(null, Object.values(sortedBikes))
   );
 
-  console.log("bestBikeMatch", bestBikeMatch);
-  console.log("object", sortedBikes);
+  console.log("matchingBikes", matchingBikes);
 
   return (
     <div>
       <Typography type='h2'>Checkout</Typography>
       <Typography type='body18'>
-        Best bike match: {bestBikeMatch.toUpperCase()}
+        Best bike match: {matchingBikes.join(" / ")}
       </Typography>
     </div>
   );

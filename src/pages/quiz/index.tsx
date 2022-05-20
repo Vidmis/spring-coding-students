@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { ContentWrapper } from "components";
 import { useAppDispatch } from "state/hooks";
 import { fetchQuestionsActions } from "state/sagasActions";
-import AnswerInputCard from "./layouts/AnswerInputCard";
+// import AnswerInputCard from "./layouts/AnswerInputCard";
 import AnswerCard from "./layouts/AnswerCard";
 import { useSelector } from "react-redux";
 import { selectQuizQA, selectStep } from "state/selectors";

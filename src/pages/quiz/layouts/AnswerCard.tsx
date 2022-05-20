@@ -39,8 +39,6 @@ const AnswerCard: React.FC<IAnswerCard> = ({
     !isLastCard ? onNextStep() : navigate("/checkout");
   };
 
-  console.log(isLastCard);
-
   return (
     <>
       <ContentWrapper maxWidth='100%'>

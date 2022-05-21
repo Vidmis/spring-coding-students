@@ -1,6 +1,6 @@
 import { all } from "redux-saga/effects";
-import { questionSagas } from "./sagas";
+import { bikesSagas, questionSagas } from "./sagas";
 
 export default function* rootSaga(): Generator {
-  yield all([questionSagas()]);
+  yield all([questionSagas(), bikesSagas()]);
 }

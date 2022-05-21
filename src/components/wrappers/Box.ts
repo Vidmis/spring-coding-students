@@ -72,7 +72,9 @@ export interface IBoxStylesProps<T>
     FlexDirectionProps<T>,
     AlignItemsProps<T>,
     BackgroundColorProps<T>,
-    FontSizeProps<T> {}
+    FontSizeProps<T> {
+  onClick?: () => void;
+}
 
 export const Box = styled.div<IBoxStylesProps<Theme>>`
   && {

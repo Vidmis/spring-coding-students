@@ -23,4 +23,12 @@ export interface IUserAnswerSlice {
   bikeTypes: string[];
 }
 
+export interface IBikesDataSlice {
+  url: string;
+  bikeType: string;
+}
+export interface IBikesState {
+  bikesData: IBikesDataSlice[];
+}
+
 export type AppState = ReturnType<typeof rootReducer>;

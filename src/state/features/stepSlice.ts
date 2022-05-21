@@ -3,7 +3,7 @@ import { IStepState } from "state/types";
 
 const initialState: IStepState = { value: 0 };
 
-export const stepSlice = createSlice({
+const stepSlice = createSlice({
   name: "stepCounter",
   initialState,
   reducers: {

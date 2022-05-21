@@ -14,7 +14,8 @@ interface Styles {
 }
 
 interface ImageProps extends Styles {
-  src: Visuals;
+  src?: Visuals;
+  srcUrl?: string;
   mobile_src?: Visuals;
   onClick?: () => void;
   alt: string;
@@ -31,6 +32,7 @@ const Img = styled.img<Styles>`
 export const Image: React.FC<ImageProps> = ({
   alt,
   src,
+  srcUrl,
   mobile_src,
   onClick,
   ...rest
@@ -38,7 +40,7 @@ export const Image: React.FC<ImageProps> = ({
   <LazyLoad height='100%'>
     <picture onClick={onClick}>
       {mobile_src && <source media={mobile} srcSet={visuals[mobile_src]} />}
-      <Img src={visuals[src]} alt={alt} {...rest} />
+      <Img src={src ? visuals[src] : srcUrl} alt={alt} {...rest} />
     </picture>
   </LazyLoad>
 );

@@ -1,5 +1,5 @@
-import { IUserAnswerSlice } from "../types";
 import { createSlice } from "@reduxjs/toolkit";
+import { IUserAnswerSlice } from "../types";
 // import { QuizQuestions } from "./types";
 
 const initialState: IUserAnswerSlice = {

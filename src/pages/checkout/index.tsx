@@ -1,12 +1,12 @@
 import { Box, Image, SectionWrapper, Typography } from "components";
 import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "state/hooks";
-import { fetchBikesActions, fetchQuestionsActions } from "state/sagasActions";
+import { fetchBikesActions } from "state/sagasActions";
 import { selectBikes, selectUserBikeTypes } from "state/selectors";
 
 interface IBikeBox {
   url: string;
-  bikeType: string;
+  bikeType?: string;
 }
 
 const BikeBox: React.FC<IBikeBox> = ({ url, bikeType }) => {
@@ -42,21 +42,18 @@ const Checkout: React.FC = () => {
   );
 
   return (
-    <div>
-      <Typography type='h2'>Checkout</Typography>
+    <>
       <Typography type='body18'>
         Best bike match: {matchingBikes.join(" / ")}
       </Typography>
       <SectionWrapper>
-        {bikesData.map(({ bikeType, url }) =>
+        {bikesData?.map(({ url, bikeType }) =>
           matchingBikes.includes(bikeType) ? (
             <BikeBox url={url} bikeType={bikeType} />
-          ) : (
-            <Box>yo yo yo</Box>
-          )
+          ) : null
         )}
       </SectionWrapper>
-    </div>
+    </>
   );
 };
 

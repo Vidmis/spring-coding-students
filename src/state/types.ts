@@ -26,6 +26,8 @@ export interface IUserAnswerSlice {
 export interface IBikesDataSlice {
   url: string;
   bikeType: string;
+  model: string;
+  price: number;
 }
 export interface IBikesState {
   bikesData: IBikesDataSlice[];

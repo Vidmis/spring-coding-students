@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
-import { Button } from "components";
+import { Box, Button } from "components";
 import { QUESTIONS } from "consts";
 
 interface ISpecifications {
@@ -13,5 +13,7 @@ interface ISpecifications {
 const Specifications: React.FC<ISpecifications> = ({ question, answer }) => {
   const [open, setOpen] = useState(false);
 
-  return <>yep</>;
+  return <SpecificationsWrapper>yep</SpecificationsWrapper>;
 };
+
+const SpecificationsWrapper = styled(Box)``;

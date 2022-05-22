@@ -109,7 +109,7 @@ const Text = styled.p<TextProps>`
     type && applyTextType(type as TextType, theme as Theme)};
 
   color: ${({ theme, color }) =>
-    color ? theme.colors[color] : theme.colors.primary};
+    color ? theme.colors[color] : theme.colors.white};
 
   && {
     ${typographyProperties}

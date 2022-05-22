@@ -1,8 +1,16 @@
-import { Box, Image, SectionWrapper, Typography } from "components";
+import {
+  Box,
+  ContentWrapper,
+  Image,
+  SectionWrapper,
+  Typography,
+} from "components";
 import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "state/hooks";
 import { fetchBikesActions } from "state/sagasActions";
 import { selectBikes, selectUserBikeTypes } from "state/selectors";
+import styled from "styled-components/macro";
+import { theme } from "styles/theme";
 import Carousel from "./sections/carousel/Carousel";
 
 // interface IBikeBox {
@@ -43,13 +51,39 @@ const Checkout: React.FC = () => {
   // );
 
   return (
-    <div>
-      <Box position='absolute' top='2rem' left='2rem'>
-        KILO.RIDE
+    <Box position='relative' overflow='hidden' height='100vh'>
+      <Box p='s16' mt='s16' ml='s32'>
+        <Typography type='link' fontWeight='fw600' color='white'>
+          KILO.RIDE
+        </Typography>
       </Box>
       <Carousel />
-    </div>
+      <StyledCheckout>
+        <Box
+          className='layer'
+          position='absolute'
+          backgroundColor='primary'
+          minWidth='96rem'
+          height='200rem'
+          maxWidth='100%'
+        ></Box>
+      </StyledCheckout>
+    </Box>
   );
 };
 
 export default Checkout;
+
+const StyledCheckout = styled(Box)`
+  .layer {
+    transform: rotate(351deg);
+    top: 0;
+    box-shadow: -10px 0px 50px ${theme.colors.gray};
+    left: -42.8rem;
+    z-index: -10;
+
+    .specs {
+      transform: rotate(-19deg);
+    }
+  }
+`;

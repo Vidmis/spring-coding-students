@@ -110,6 +110,7 @@ const Text = styled.p<TextProps>`
 
   color: ${({ theme, color }) =>
     color ? theme.colors[color] : theme.colors.white};
+  cursor: ${({ cursor }) => (cursor ? "pointer" : "auto")};
 
   && {
     ${typographyProperties}

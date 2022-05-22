@@ -140,8 +140,6 @@ const Header: React.FC = () => {
 export default Header;
 
 const StyledHeader = styled(Box)`
-  .mainContent {
-  }
   .layer {
     transform: rotate(19deg);
     top: 0;

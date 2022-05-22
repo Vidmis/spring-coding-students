@@ -39,7 +39,7 @@ const Carousel: React.FC = () => {
       sortedBikes[bike] === Math.max.apply(null, Object.values(sortedBikes))
   );
   return (
-    <SpecificationsWrapper backgroundColor='primary'>
+    <SpecificationsWrapper>
       <Swiper
         // pagination={true}
         // modules={[Pagination]}
@@ -53,7 +53,11 @@ const Carousel: React.FC = () => {
         {bikesData.map(({ url, bikeType, model, price }) =>
           matchingBikes.includes(bikeType) ? (
             <SwiperSlide className='swiper'>
-              <Box display='flex'>
+              <Box
+                display='flex'
+                justifyContent='space-around'
+                alignItems='center'
+              >
                 <BikeImageBox url={url} bikeType={bikeType} />
                 <BikeSpecifications
                   bikeType={bikeType}
@@ -79,13 +83,15 @@ const SpecificationsWrapper = styled(Box)`
     box-shadow: none;
     border-radius: 5px;
     height: 14rem;
-    .swiper-button-prev,
-    .swiper-button-next {
+    .swiper-button-prev {
       color: ${theme.colors.white};
+    }
+    .swiper-button-next {
+      color: ${theme.colors.primary};
     }
   }
   .swiper {
     width: 100%;
-    height: 100vh;
+    height: 91vh;
   }
 `;

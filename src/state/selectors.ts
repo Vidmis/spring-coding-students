@@ -6,3 +6,5 @@ export const selectQuizQA = (state: AppState) =>
 export const selectUserBikeTypes = (state: AppState) => state.answer.bikeTypes;
 export const selectStep = (state: AppState) => state.step.value;
 export const selectBikes = (state: AppState) => state.bikes.bikesData;
+export const selectBikesCart = (state: AppState) =>
+  state.bikesCart.bikesCartData;

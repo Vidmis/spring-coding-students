@@ -50,7 +50,7 @@ const Carousel: React.FC = () => {
         modules={[Navigation, Pagination]}
         className='swiper-wrapper'
       >
-        {bikesData.map(({ url, bikeType, model, price }) =>
+        {bikesData.map(({ url, bikeType, model, price, id }) =>
           matchingBikes.includes(bikeType) ? (
             <SwiperSlide className='swiper'>
               <Box
@@ -63,6 +63,7 @@ const Carousel: React.FC = () => {
                   bikeType={bikeType}
                   model={model}
                   price={price}
+                  id={id}
                 />
               </Box>
             </SwiperSlide>
@@ -92,6 +93,6 @@ const SpecificationsWrapper = styled(Box)`
   }
   .swiper {
     width: 100%;
-    height: 91vh;
+    height: 90vh;
   }
 `;

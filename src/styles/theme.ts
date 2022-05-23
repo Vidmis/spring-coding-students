@@ -1,4 +1,5 @@
 import { lighten, darken } from "polished";
+import { css } from "styled-components";
 
 export type Colors = keyof typeof colors;
 
@@ -16,6 +17,7 @@ const colors = {
   primaryHover: "#fC7E7E",
   dark: "#545454",
   gray: "#B6B6B6",
+  lightGray: "#f0f0f0",
   transparent: "#ffffffee",
 };
 
@@ -82,8 +84,6 @@ const space = {
 };
 
 const buttonStyles = {
-  color: colors.white,
-  // boxShadow: `0px 0px 24px 0px ${colors.gray}`,
   border: "none",
   borderRadius: radii.b6,
   cursor: "pointer",
@@ -116,13 +116,32 @@ export const theme = {
       ...buttonStyles,
       fontSize: fontSizes.fs18,
       fontWeight: fontWeights.fw500,
-      color: colors.primary,
-      backgroundColor: colors.transparent,
+      color: colors.dark,
+      backgroundColor: colors.white,
       width: "9rem",
       height: "2.5rem",
       "&:hover": {
         // backgroundColor: darken(0.04, colors.transparent),
       },
+    },
+    primarySM: {
+      ...buttonStyles,
+      fontSize: fontSizes.fs24,
+      fontWeight: fontWeights.fw600,
+      color: colors.white,
+      backgroundColor: colors.primary,
+      width: "9rem",
+      height: "3rem",
+      "&:hover": {
+        backgroundColor: lighten(0.05, colors.primary),
+      },
+    },
+    custom: {
+      ...buttonStyles,
+      fontSize: fontSizes.fs18,
+      fontWeight: fontWeights.fw500,
+      width: "9rem",
+      height: "3rem",
     },
   },
   fontFamily: { primary: "Red Hat Display" },

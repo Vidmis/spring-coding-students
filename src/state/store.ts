@@ -4,6 +4,7 @@ import { persistReducer, persistStore } from "redux-persist";
 import createSagaMiddleware from "@redux-saga/core";
 import sessionStorage from "redux-persist/es/storage/session";
 import {
+  IBikesCartState,
   IBikesState,
   IQuestionState,
   IStepState,
@@ -14,12 +15,14 @@ import questionReducer from "./features/questionsSlice";
 import stepReducer from "./features/stepSlice";
 import userAnswerReducer from "./features/userAnswersSlice";
 import bikesReducer from "./features/bikesDataSlice";
+import bikesCartReducer from "./features/userBikesCartSlice";
 
 export interface RootState {
   question: IQuestionState;
   answer: IUserAnswerSlice;
   step: IStepState;
   bikes: IBikesState;
+  bikesCart: IBikesCartState;
 }
 
 const combinedReducer = combineReducers<CombinedState<RootState>>({
@@ -27,6 +30,7 @@ const combinedReducer = combineReducers<CombinedState<RootState>>({
   answer: userAnswerReducer.reducer,
   step: stepReducer.reducer,
   bikes: bikesReducer.reducer,
+  bikesCart: bikesCartReducer.reducer,
 });
 
 export const rootReducer = (state: any, action: AnyAction) =>
@@ -35,7 +39,7 @@ export const rootReducer = (state: any, action: AnyAction) =>
 const persistConfig = {
   key: "root",
   storage: sessionStorage,
-  blacklist: ["config", "question", "step"],
+  blacklist: ["config", "question", "step", "bikesCart"],
   whitelist: ["answer", "bikes"],
 };
 

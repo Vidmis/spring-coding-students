@@ -1,29 +1,51 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components/macro";
 import { Box, ContentWrapper, Typography } from "components";
 import { theme } from "styles/theme";
 import { BIKE_SIZES } from "consts";
 import { Button } from "components/atoms";
+import { useAppDispatch } from "state/hooks";
+import {
+  setAddToCart,
+  setDeleteFromCart,
+} from "state/features/userBikesCartSlice";
 
 interface BikeSpecificationsProps {
+  id: string;
   bikeType: string;
   model: string;
-  price: string;
+  price: number;
 }
 
 const BikeSpecifications: React.FC<BikeSpecificationsProps> = ({
+  id,
   bikeType,
   model,
   price,
 }) => {
+  const dispatch = useAppDispatch();
   const [bikeSize, setBikeSize] = useState<{ size: string }>({
     size: "",
   });
-  const [bikeColor, setBikeColor] = useState();
-  const [addToCart, setAddToCart] = useState();
-  const discountPrice = parseInt(price) + 100;
 
-  console.log(bikeSize);
+  const discountPrice = price + 100;
+
+  console.log(id);
+
+  const handleAddToCart = () => {
+    dispatch(
+      setAddToCart({
+        id,
+        bikeType,
+        model,
+        price,
+        size: "M",
+      })
+    );
+  };
+  const handleRemoveFromCart = () => {
+    dispatch(setDeleteFromCart(id));
+  };
 
   return (
     <SpecificationsWrapper>
@@ -102,9 +124,25 @@ const BikeSpecifications: React.FC<BikeSpecificationsProps> = ({
         </Box>
       </Box>
 
-      <Button variant='primary' mt='s48'>
-        + ADD TO CARD
-      </Button>
+      <Box
+        display='flex'
+        justifyContent='space-between'
+        alignItems='center'
+        mt='s48'
+        width='28rem'
+      >
+        <Button variant='primary' onClick={handleAddToCart}>
+          + ADD TO CART
+        </Button>
+        <Button
+          variant='custom'
+          color='dark'
+          backgroundColor='lightGray'
+          onClick={handleRemoveFromCart}
+        >
+          - REMOVE
+        </Button>
+      </Box>
     </SpecificationsWrapper>
   );
 };

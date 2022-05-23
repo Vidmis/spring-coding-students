@@ -24,6 +24,7 @@ export interface IUserAnswerSlice {
 }
 
 export interface IBikesDataSlice {
+  id: string;
   url: string;
   bikeType: string;
   model: string;
@@ -31,6 +32,17 @@ export interface IBikesDataSlice {
 }
 export interface IBikesState {
   bikesData: IBikesDataSlice[];
+}
+
+export interface IBikesCartSlice {
+  id: string;
+  bikeType: string;
+  model: string;
+  price: string;
+  size: string;
+}
+export interface IBikesCartState {
+  bikesCartData: IBikesCartSlice[];
 }
 
 export type AppState = ReturnType<typeof rootReducer>;

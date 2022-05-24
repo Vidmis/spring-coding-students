@@ -14,10 +14,8 @@ const GlobalStyle = createGlobalStyle`
     text-decoration: none;
     color: ${theme.colors.dark};
 }
-body {
+html, body {
     overflow: hidden auto;
-}
-html {
     font-family: ${theme.fontFamily.primary};
 }
 `;

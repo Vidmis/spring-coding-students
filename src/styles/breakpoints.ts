@@ -8,7 +8,7 @@ export const desktop = "(min-width: 1536px)"; //1536px
 
 export const useQuery = () => ({
   isMobile: useMediaQuery({ query: mobile }),
-  isTablet: useMediaQuery({ query: smTablet }),
+  isTablet: useMediaQuery({ query: mdTablet }),
   isLaptop: useMediaQuery({ query: laptop }),
   isDesktop: useMediaQuery({ query: desktop }),
 });

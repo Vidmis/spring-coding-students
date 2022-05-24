@@ -12,6 +12,7 @@ type BreakpointsProp<T = string> = {
 };
 
 const colors = {
+  unset: "unset",
   white: "#ffffff",
   primary: "#FE6767",
   primaryHover: "#fC7E7E",
@@ -66,12 +67,12 @@ const lineHeights = {
   xxlMob: "5.25rem",
   xl: "5.875rem",
   xlMob: "4.5625rem",
-  l: "4.5625rem",
-  lMob: "3.25rem",
-  m: "3.75rem",
+  lg: "4.5625rem",
+  lgMob: "3.25rem",
+  md: "3.75rem",
   mMob: "2.625rem",
-  s: "3.25rem",
-  sMob: "2.125rem",
+  sm: "3.25rem",
+  smMob: "2.125rem",
   xs: "2.625rem",
   xsMob: "2rem",
 };
@@ -99,7 +100,7 @@ const space = {
   s96: "6rem",
   s128: "8rem",
   s160: "10rem",
-  auto: "0 auto",
+  auto: "auto",
 };
 
 const buttonStyles = {
@@ -126,7 +127,7 @@ export const theme = {
       fontWeight: fontWeights.fw600,
       color: colors.white,
       backgroundColor: colors.primary,
-      width: "16rem",
+      width: "14rem",
       height: "3rem",
       "&:hover": {
         backgroundColor: lighten(0.05, colors.primary),

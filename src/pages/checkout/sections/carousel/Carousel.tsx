@@ -13,6 +13,7 @@ import { selectBikes, selectUserBikeTypes } from "state/selectors";
 import { fetchBikesActions } from "state/sagasActions";
 import BikeImageBox from "pages/checkout/layouts/BikeImageBox";
 import BikeSpecifications from "pages/checkout/layouts/BikeSpecifications";
+import { mdTablet } from "styles/breakpoints";
 
 interface ICarouselProps {
   bikesData: IBikesDataSlice[];
@@ -41,8 +42,6 @@ const Carousel: React.FC = () => {
   return (
     <SpecificationsWrapper>
       <Swiper
-        // pagination={true}
-        // modules={[Pagination]}
         pagination={{
           dynamicBullets: true,
         }}
@@ -54,8 +53,10 @@ const Carousel: React.FC = () => {
           matchingBikes.includes(bikeType) ? (
             <SwiperSlide className='swiper'>
               <Box
-                display='flex'
+                display={{ _: "flex" }}
+                flexWrap={{ _: "wrap", mdTablet: "nowrap" }}
                 justifyContent='space-around'
+                height='82vh'
                 alignItems='center'
               >
                 <BikeImageBox url={url} bikeType={bikeType} />
@@ -80,19 +81,30 @@ const SpecificationsWrapper = styled(Box)`
   .swiper-wrapper {
     display: flex;
     justify-content: start;
+    /* height: 100%; */
     /* width: 5rem; */
     box-shadow: none;
     border-radius: 5px;
-    height: 14rem;
     .swiper-button-prev {
+      display: none;
+      @media ${mdTablet} {
+        display: block;
+      }
       color: ${theme.colors.white};
     }
     .swiper-button-next {
+      display: none;
+      @media ${mdTablet} {
+        display: block;
+      }
       color: ${theme.colors.primary};
     }
   }
   .swiper {
     width: 100%;
-    height: 90vh;
+    /* min-height: 100%; */
+    @media ${mdTablet} {
+      /* min-height: 86.5vh; */
+    }
   }
 `;

@@ -49,36 +49,68 @@ const BikeSpecifications: React.FC<BikeSpecificationsProps> = ({
 
   return (
     <SpecificationsWrapper>
-      <Box className='header' mb='s64'>
-        <Typography type='h3' color='dark'>
+      <Box className='header'>
+        <Typography
+          type='h2'
+          mb={{ _: "s16" }}
+          fontSize={{ _: "fs28", mdTablet: "fs48" }}
+          fontWeight={{ _: "fw600" }}
+          lineHeight={{ _: "mMob", mdTablet: "md" }}
+          color='dark'
+        >
           {model.toUpperCase()}
         </Typography>
         <Box display='flex'>
-          <Typography type='body20' mr='s32' color='gray'>
+          <Typography
+            fontSize={{ _: "fs16", mdTablet: "fs24" }}
+            mr='s32'
+            color='gray'
+          >
             BYKE TYPE
           </Typography>
-          <Typography type='body20' fontWeight='fw700' color='gray'>
+          <Typography
+            fontSize={{ _: "fs16", mdTablet: "fs24" }}
+            fontWeight='fw700'
+            color='gray'
+          >
             {bikeType.toUpperCase()}
           </Typography>
         </Box>
       </Box>
 
-      <Box className='priceContent' mb='s48'>
+      <Box
+        className='priceContent'
+        display={{ _: "flex", mdTablet: "block" }}
+        justifyContent={{ _: "space-around" }}
+        my={{ _: "s16", mdTablet: "s48" }}
+      >
         <Typography
-          type='h6'
-          fontWeight='fw400'
+          fontSize={{ _: "fs28", mdTablet: "fs48" }}
+          fontWeight={{ _: "fw400" }}
+          lineHeight={{ _: "mMob", mdTablet: "md" }}
           textDecoration='line-through'
           color='dark'
         >
           € {discountPrice}
         </Typography>
-        <Typography type='h3' color='primary'>
+        <Typography
+          fontSize={{ _: "fs36", mdTablet: "fs60" }}
+          fontWeight={{ _: "fw700" }}
+          lineHeight={{ _: "mMob", mdTablet: "md" }}
+          type='h3'
+          color='primary'
+        >
           € {price}
         </Typography>
       </Box>
 
       <Box className='chooseBike' mb='s48'>
-        <Typography type='body18' fontWeight='fw600' color='gray' mb='s16'>
+        <Typography
+          fontSize={{ _: "fs16", mdTablet: "fs18" }}
+          fontWeight='fw600'
+          color='gray'
+          mb='s16'
+        >
           CHOOSE BIKE SIZE
         </Typography>
         <Box display='flex'>
@@ -87,7 +119,7 @@ const BikeSpecifications: React.FC<BikeSpecificationsProps> = ({
               key={size}
               type='body18'
               fontWeight='fw600'
-              mr='s32'
+              mr='s24'
               onClick={() => setBikeSize({ ...bikeSize, size: size })}
             >
               {bikeSize.size === size ? (
@@ -127,15 +159,26 @@ const BikeSpecifications: React.FC<BikeSpecificationsProps> = ({
       <Box
         display='flex'
         justifyContent='space-between'
+        maxWidth='18rem'
         alignItems='center'
         mt='s48'
-        width='28rem'
       >
-        <Button variant='primary' onClick={handleAddToCart}>
+        <Button
+          variant='custom'
+          width={{ _: "8rem", laptop: "10rem" }}
+          height={{ _: "3rem" }}
+          fontSize={{ _: "fs14", laptop: "fs16" }}
+          color='white'
+          backgroundColor='primary'
+          onClick={handleAddToCart}
+        >
           + ADD TO CART
         </Button>
         <Button
           variant='custom'
+          width={{ _: "7rem" }}
+          height={{ _: "3rem" }}
+          fontSize={{ _: "fs14" }}
           color='dark'
           backgroundColor='lightGray'
           onClick={handleRemoveFromCart}
@@ -149,10 +192,4 @@ const BikeSpecifications: React.FC<BikeSpecificationsProps> = ({
 
 export default BikeSpecifications;
 
-const SpecificationsWrapper = styled(Box)`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  height: 90vh;
-  justify-content: center;
-`;
+const SpecificationsWrapper = styled(Box)``;

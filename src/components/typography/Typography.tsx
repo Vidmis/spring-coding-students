@@ -15,6 +15,8 @@ import {
   maxWidth,
   MinWidthProps,
   MaxWidthProps,
+  ColorProps,
+  color,
 } from "styled-system";
 
 import { Colors, Theme } from "styles/theme";
@@ -63,6 +65,7 @@ export enum TextTag {
 type AsAttributeType = string | React.ComponentType;
 
 const typographyProperties = compose(
+  color,
   textAlign,
   fontWeight,
   lineHeight,
@@ -77,9 +80,9 @@ export interface TextProps
   extends SpaceProps<Theme>,
     TypographyProps<Theme>,
     MinWidthProps<Theme>,
-    MaxWidthProps<Theme> {
+    MaxWidthProps<Theme>,
+    ColorProps<Theme> {
   className?: string;
-  color?: Colors;
   type?: TextType;
   to?: string;
   cursor?: string;
@@ -108,10 +111,6 @@ const Text = styled.p<TextProps>`
 
   ${({ type, theme }) =>
     type && applyTextType(type as TextType, theme as Theme)};
-
-  color: ${({ theme, color }) =>
-    color ? theme.colors[color] : theme.colors.white};
-  cursor: ${({ cursor }) => (cursor ? "pointer" : "auto")};
 
   && {
     ${typographyProperties}

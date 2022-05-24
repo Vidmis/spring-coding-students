@@ -93,6 +93,7 @@ const space = {
   s0: "0px",
   s10: "0.625rem",
   s16: "1rem",
+  s24: "1.5rem",
   s32: "2rem",
   s48: "3rem",
   s64: "4rem",
@@ -159,10 +160,6 @@ export const theme = {
     },
     custom: {
       ...buttonStyles,
-      fontSize: fontSizes.fs18,
-      fontWeight: fontWeights.fw500,
-      width: "9rem",
-      height: "3rem",
     },
   },
   fontFamily: { primary: "Red Hat Display" },

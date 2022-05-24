@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import styled from "styled-components/macro";
-import { Link } from "gatsby";
-import { Image } from "components";
 import { MENU_LIST } from "consts";
 import { Box } from "components/wrappers/Box";
 import { theme } from "styles/theme";
@@ -16,7 +14,13 @@ interface INavListItem {
 
 const NavListItem = ({ menuItem }: INavListItem) => (
   <Box as='li' mx='s16'>
-    <Typography className='list-item' type='link' to='#' cursor='pointer'>
+    <Typography
+      className='list-item'
+      type='link'
+      to='#'
+      cursor='pointer'
+      color='white'
+    >
       {menuItem}
     </Typography>
   </Box>
@@ -39,7 +43,6 @@ export const Navigation: React.FC = () => {
       <Typography
         className='logo'
         type='link'
-        // fontSize={{ _: "fs32" }}
         fontWeight={{ _: "fw600" }}
         color='primary'
       >

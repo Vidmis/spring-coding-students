@@ -2,8 +2,6 @@ import styled from "styled-components/macro";
 import {
   alignItems,
   AlignItemsProps,
-  alignSelf,
-  AlignSelfProps,
   grid,
   GridProps,
   backgroundColor,
@@ -34,13 +32,15 @@ import {
   TextAlignProps,
   zIndex,
   ZIndexProps,
+  FlexWrapProps,
+  flexWrap,
 } from "styled-system";
 
 import { Theme } from "styles/theme";
 
 const boxProps = compose(
-  space,
   color,
+  space,
   display,
   position,
   grid,
@@ -50,6 +50,7 @@ const boxProps = compose(
   shadow,
   textAlign,
   flexDirection,
+  flexWrap,
   justifyContent,
   alignItems,
   backgroundColor,
@@ -70,6 +71,7 @@ export interface IBoxStylesProps<T>
     SpaceProps<T>,
     JustifyContentProps<T>,
     FlexDirectionProps<T>,
+    FlexWrapProps<T>,
     AlignItemsProps<T>,
     BackgroundColorProps<T>,
     FontSizeProps<T> {

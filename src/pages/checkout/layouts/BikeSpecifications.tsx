@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components/macro";
 import { Box, ContentWrapper, Typography } from "components";
 import { theme } from "styles/theme";

@@ -78,6 +78,7 @@ export interface TextProps
     TypographyProps<Theme>,
     MinWidthProps<Theme>,
     MaxWidthProps<Theme> {
+  className?: string;
   color?: Colors;
   type?: TextType;
   to?: string;

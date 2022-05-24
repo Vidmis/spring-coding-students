@@ -1,20 +1,23 @@
-import {
-  Box,
-  ContentWrapper,
-  Image,
-  SectionWrapper,
-  Typography,
-} from "components";
-import { Button } from "components/atoms";
 import React from "react";
+import { Box, Typography } from "components";
+import { Button } from "components/atoms";
 import { useSelector } from "react-redux";
+import { useAppDispatch } from "state/hooks";
+import { postBuyRequestActions } from "state/sagasActions";
 import { selectBikesCart } from "state/selectors";
 import styled from "styled-components/macro";
 import { theme } from "styles/theme";
 import Carousel from "./sections/carousel/Carousel";
+import { navigate } from "gatsby";
 
 const Checkout: React.FC = () => {
   const bikesCart = useSelector(selectBikesCart);
+  const dispatch = useAppDispatch();
+
+  const handleBuyClick = () => {
+    dispatch(postBuyRequestActions(bikesCart));
+    navigate("/success");
+  };
 
   console.log(bikesCart);
 
@@ -30,7 +33,7 @@ const Checkout: React.FC = () => {
         <Typography type='link' fontWeight='fw600' color='white'>
           KILO.RIDE
         </Typography>
-        <Button variant='primarySM' color='white'>
+        <Button variant='primarySM' color='white' onClick={handleBuyClick}>
           {bikesCart.length} Buy
         </Button>
       </Box>

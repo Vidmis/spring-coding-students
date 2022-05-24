@@ -19,10 +19,21 @@ const SpecsBox: React.FC<SpecsBoxProps> = ({
   specsColor,
 }) => (
   <Box>
-    <Typography type='body14' fontWeight='fw700' color={headerColor}>
+    <Typography
+      type='body14'
+      fontWeight='fw700'
+      fontSize={{ _: "fs12", laptop: "fs14", desktop: "fs14" }}
+      lineHeight={{ _: "xsMob", laptop: "s", desktop: "m" }}
+      fontStyle='italic'
+      color={headerColor}
+    >
       {header}
     </Typography>
-    <Typography type='h4' color={specsColor}>
+    <Typography
+      type='h6'
+      fontSize={{ _: "fs24", laptop: "fs32", desktop: "fs36" }}
+      color={specsColor}
+    >
       {specs}
     </Typography>
   </Box>
@@ -31,108 +42,144 @@ const SpecsBox: React.FC<SpecsBoxProps> = ({
 const Header: React.FC = () => {
   return (
     <>
-      <StyledHeader
-        px='s80'
-        position='relative'
-        height='100vh'
-        width='100%'
-        overflow='hidden'
+      <ContentWrapper
+        display={{ _: "flex", tablet: "block" }}
+        flexDirection='column'
+        alignItems='center'
       >
-        <Navigation />
-
-        <ContentWrapper>
-          <Box
-            mt='s160'
-            maxWidth='46rem'
-            position='relative'
-            zIndex='10'
-            backgroundColor='transparent'
-            borderRadius='b24'
-            mb='s96'
-          >
-            <Typography type='h1' color='dark' fontWeight='fw900'>
-              Some content,
-              <Typography type='h1' color='primary' fontWeight='fw900'>
-                some extend
-              </Typography>
-            </Typography>
-            <Typography type='body24' color='gray' maxWidth='30rem'>
-              Join the revolution to make a difference for your life and the
-              environment.
-            </Typography>
-          </Box>
-
-          <Box>
-            <Button
-              onClick={() => {
-                navigate("/quiz");
-              }}
-              variant='primary'
-              mr='s32'
-            >
-              Take Quiz
-            </Button>
-            <Button variant='secondary'>Learn More</Button>
-          </Box>
-        </ContentWrapper>
-
         <Box
-          className='layer'
-          position='absolute'
-          backgroundColor='primary'
-          minWidth='96rem'
-          height='200rem'
-          maxWidth='100%'
+          className='banner-box'
+          padding='s16'
+          mt={{ _: "s48", mobile: "s16", laptop: "s64", desktop: "s160" }}
+          mb={{ _: "s48", laptop: "s32", desktop: "s48" }}
+          width={{ _: "auto", laptop: "36rem", desktop: "43rem" }}
+          position='relative'
+          zIndex='10'
+          backgroundColor='transparent'
+          borderRadius='b24'
         >
-          <Box className='specs' position='absolute' top='54rem' right='78rem'>
-            <Box
-              display='flex'
-              justifyContent='space-between'
-              width='34rem'
-              ml='s96'
+          <Typography
+            type='h1'
+            fontSize={{ _: "fs36", laptop: "fs48", desktop: "fs60" }}
+            lineHeight={{ _: "sMob", laptop: "m", desktop: "xl" }}
+            color='dark'
+            fontWeight='fw900'
+          >
+            You are one ride away,
+            <Typography
+              type='h1'
+              mt={{ _: "s10", laptop: "s0" }}
+              fontSize={{ _: "fs36", laptop: "fs48", desktop: "fs60" }}
+              lineHeight={{ _: "sMob", laptop: "m", desktop: "xl" }}
+              color='primary'
+              fontWeight='fw900'
             >
-              <SpecsBox
-                header='Battery Range'
-                specs='70 Km'
-                headerColor='gray'
-                specsColor='primary'
-              />
-              <SpecsBox
-                header='Charging Time'
-                specs='3.5 Hours'
-                headerColor='dark'
-                specsColor='white'
-              />
-            </Box>
+              from a good mood.
+            </Typography>
+          </Typography>
+          <Typography
+            type='body24'
+            fontSize={{ _: "fs14", laptop: "fs18", desktop: "fs24" }}
+            mt='s16'
+            color='gray'
+            maxWidth='30rem'
+          >
+            Join the revolution to make a difference for your life and the
+            environment.
+          </Typography>
+        </Box>
 
-            <Box
-              display='flex'
-              justifyContent='space-between'
-              width='34rem'
-              mr='s96'
-            >
-              <SpecsBox
-                header='Assist Speed'
-                specs='25 Kmph'
-                headerColor='gray'
-                specsColor='primary'
-              />
-              <SpecsBox
-                header='Weight'
-                specs='8.4 Kg'
-                headerColor='dark'
-                specsColor='white'
-              />
-            </Box>
+        <Box className='quiz-box'>
+          <Button
+            onClick={() => {
+              navigate("/quiz");
+            }}
+            variant='primary'
+            mr='s32'
+          >
+            Take Quiz
+          </Button>
+        </Box>
+      </ContentWrapper>
+
+      <Box
+        className='background-layer'
+        position='absolute'
+        backgroundColor='primary'
+        minWidth='96rem'
+        height='200rem'
+        maxWidth='100%'
+      >
+        <Box
+          className='specs'
+          position='absolute'
+          top={{
+            _: "42rem",
+            // mobile: "3rem",
+            laptop: "44rem",
+            desktop: "54rem",
+          }}
+          right='82rem'
+        >
+          <Box
+            display='flex'
+            justifyContent='space-between'
+            width='24rem'
+            ml={{ _: "s16", tablet: "s32" }}
+          >
+            <SpecsBox
+              header='Gravel & Trails'
+              specs='GRAVEL'
+              headerColor='gray'
+              specsColor='primary'
+            />
+            <SpecsBox
+              header='Lightweight & Fast'
+              specs='ROAD'
+              headerColor='dark'
+              specsColor='white'
+            />
+          </Box>
+
+          <Box
+            display='flex'
+            justifyContent='space-between'
+            width='21rem'
+            mr='s96'
+          >
+            <SpecsBox
+              header='City roads'
+              specs='HYBRID'
+              headerColor='gray'
+              specsColor='primary'
+            />
+            <SpecsBox
+              header='Off-road'
+              specs='MTB'
+              headerColor='dark'
+              specsColor='white'
+            />
           </Box>
         </Box>
-        <Box position='absolute' top='12rem' right='17.5rem' zIndex='5'>
-          <Image src='roadBikeImg' alt='road_bike' width='42rem' />
-        </Box>
-        <Box position='absolute' top='9rem' right='-9rem' zIndex='1'>
-          <Image src='mtbBikeImg' alt='mtb_bike' width='26rem' />
-        </Box>
-      </StyledHeader>
+      </Box>
+      <Box
+        position='absolute'
+        top={{ _: "8rem", laptop: "12rem" }}
+        right={{ _: "5rem", laptop: "-10rem", desktop: "18rem" }}
+        zIndex='5'
+        display={{ _: "none", laptop: "block" }}
+      >
+        <Image src='roadBikeImg' alt='road_bike' width='40rem' />
+      </Box>
+      <Box
+        position='absolute'
+        top='9rem'
+        right='-9rem'
+        zIndex='1'
+        display={{ _: "none", desktop: "block" }}
+      >
+        <Image src='mtbBikeImg' alt='mtb_bike' width='24rem' />
+      </Box>
     </>
   );
 };

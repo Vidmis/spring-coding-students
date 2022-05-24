@@ -3,12 +3,6 @@ import styled from "styled-components/macro";
 import { Link } from "gatsby";
 import { Image } from "components";
 import { MENU_LIST } from "consts";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faFacebookF,
-  faInstagram,
-  faTwitter,
-} from "@fortawesome/free-brands-svg-icons";
 import { Box } from "components/wrappers/Box";
 import { theme } from "styles/theme";
 import { Typography } from "components/typography/Typography";
@@ -34,10 +28,16 @@ export const Navigation: React.FC = () => {
       alignItems='center'
       mt='s48'
     >
-      <Typography type='link' fontWeight='fw600' color='primary'>
+      <Typography
+        className='logo'
+        type='link'
+        fontWeight='fw600'
+        color='primary'
+        ml={{ _: "s10", tablet: "s0" }}
+      >
         KILO.RIDE
       </Typography>
-      <Box className='unList' as='ul' display='flex'>
+      <Box className='unList' as='ul' display={{ _: "none", laptop: "flex" }}>
         {MENU_LIST.map((menuItem: string, index: number) => (
           <NavListItem key={index + menuItem} menuItem={menuItem} />
         ))}

@@ -1,12 +1,12 @@
-import { lighten, darken } from "polished";
-import { css } from "styled-components";
+import { lighten } from "polished";
 
 export type Colors = keyof typeof colors;
 
 type BreakpointsProp<T = string> = {
   _: T;
-  lmobile: T;
-  ltablet: T;
+  mobile: T;
+  smTablet: T;
+  mdTablet: T;
   laptop: T;
   desktop: T;
 };
@@ -35,10 +35,11 @@ const radii = {
 
 const breakpoints: BreakpointsProp = {
   _: "",
-  lmobile: "24rem",
-  ltablet: "48rem",
-  laptop: "80rem",
-  desktop: "90rem",
+  mobile: "640px",
+  smTablet: "768px",
+  mdTablet: "1024px",
+  laptop: "1280px",
+  desktop: "1536px",
 };
 
 const fontSizes = {
@@ -49,12 +50,30 @@ const fontSizes = {
   fs16: "1rem",
   fs18: "1.125rem",
   fs20: "1.25rem",
-  fs24: "24px",
+  fs24: "1.5rem",
+  fs28: "1.75rem",
+  fs32: "2rem",
   fs36: "2.25rem",
   fs48: "3rem",
   fs60: "3.75rem",
   fs72: "4.5rem",
+  fs80: "5rem",
   fs128: "8rem",
+};
+
+const lineHeights = {
+  xxl: "6.5rem",
+  xxlMob: "5.25rem",
+  xl: "5.875rem",
+  xlMob: "4.5625rem",
+  l: "4.5625rem",
+  lMob: "3.25rem",
+  m: "3.75rem",
+  mMob: "2.625rem",
+  s: "3.25rem",
+  sMob: "2.125rem",
+  xs: "2.625rem",
+  xsMob: "2rem",
 };
 
 const fontWeights = {
@@ -97,6 +116,7 @@ export const theme = {
   colors,
   radii,
   fontSizes,
+  lineHeights,
   fontWeights,
   space,
   buttons: {
@@ -145,9 +165,6 @@ export const theme = {
     },
   },
   fontFamily: { primary: "Red Hat Display" },
-  lineHeights: {
-    lh: "1.125rem",
-  },
   breakpoints,
   borders: {
     b_solid: "1px solid #000000",

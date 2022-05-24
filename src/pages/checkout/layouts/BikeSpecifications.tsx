@@ -101,7 +101,7 @@ const BikeSpecifications: React.FC<BikeSpecificationsProps> = ({
                   alignItems='center'
                   justifyContent='center'
                 >
-                  <Typography cursor='pointer' fontWeight='600'>
+                  <Typography cursor='pointer' fontWeight='fw600'>
                     {size.toUpperCase()}
                   </Typography>
                 </Box>
@@ -114,7 +114,7 @@ const BikeSpecifications: React.FC<BikeSpecificationsProps> = ({
                   alignItems='center'
                   justifyContent='center'
                 >
-                  <Typography cursor='pointer' color='dark' fontWeight='600'>
+                  <Typography cursor='pointer' color='dark' fontWeight='fw600'>
                     {size.toUpperCase()}
                   </Typography>
                 </Box>

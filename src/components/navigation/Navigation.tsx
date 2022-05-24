@@ -28,16 +28,10 @@ export const Navigation: React.FC = () => {
       alignItems='center'
       mt='s48'
     >
-      <Typography
-        className='logo'
-        type='link'
-        fontWeight='fw600'
-        color='primary'
-        ml={{ _: "s10", tablet: "s0" }}
-      >
+      <Typography className='logo' type='link' color='primary'>
         KILO.RIDE
       </Typography>
-      <Box className='unList' as='ul' display={{ _: "none", laptop: "flex" }}>
+      <Box className='unList' as='ul'>
         {MENU_LIST.map((menuItem: string, index: number) => (
           <NavListItem key={index + menuItem} menuItem={menuItem} />
         ))}

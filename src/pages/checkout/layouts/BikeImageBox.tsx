@@ -7,7 +7,7 @@ interface BikeImageBoxProps {
 }
 
 const BikeImageBox: React.FC<BikeImageBoxProps> = ({ url, bikeType }) => (
-  <Image srcUrl={url} alt={bikeType} width='20rem' />
+  <Image srcUrl={url} alt={bikeType} />
 );
 
 export default BikeImageBox;

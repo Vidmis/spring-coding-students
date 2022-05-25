@@ -1,4 +1,4 @@
-import { lighten } from "polished";
+import { darken, lighten } from "polished";
 
 export type Colors = keyof typeof colors;
 
@@ -70,7 +70,7 @@ const lineHeights = {
   lg: "4.5625rem",
   lgMob: "3.25rem",
   md: "3.75rem",
-  mMob: "2.625rem",
+  mdMob: "2.625rem",
   sm: "3.25rem",
   smMob: "2.125rem",
   xs: "2.625rem",
@@ -142,9 +142,6 @@ export const theme = {
       backgroundColor: colors.white,
       width: "9rem",
       height: "2.5rem",
-      "&:hover": {
-        // backgroundColor: darken(0.04, colors.transparent),
-      },
     },
     primarySM: {
       ...buttonStyles,
@@ -160,14 +157,17 @@ export const theme = {
     },
     custom: {
       ...buttonStyles,
+      "&:hover": {},
     },
   },
   fontFamily: { primary: "Red Hat Display" },
   breakpoints,
   borders: {
-    b_solid: "1px solid #000000",
-    b_dashed: "1px dashed #000000",
-    b_dotted: "1px dotted #000000",
+    b_primary: `1px solid ${colors.primary}`,
+    b_dark: `1px solid ${colors.dark}`,
+    b_gray: `1px solid ${colors.gray}`,
+    b_lightGray: `1px solid ${colors.lightGray}`,
+    b_white: `1px solid ${colors.white}`,
   },
   borderWidths: {
     b0: "0px",

@@ -1,26 +1,28 @@
-import React from "react";
-import { Box, ContentWrapper, SectionWrapper, Typography } from "components";
+import { Box, ContentWrapper, Typography } from "components";
+import { desktop, laptop } from "styles/breakpoints";
+import { useAppDispatch, useAppSelector } from "state/hooks";
+
 import { Button } from "components/atoms";
-import { useSelector } from "react-redux";
-import { useAppDispatch } from "state/hooks";
+import Carousel from "./sections/carousel/Carousel";
+import React from "react";
+import { navigate } from "gatsby";
 import { postBuyRequestActions } from "state/sagasActions";
 import { selectBikesCart } from "state/selectors";
+import { setResetCart } from "state/features/userBikesCartSlice";
 import styled from "styled-components/macro";
 import { theme } from "styles/theme";
-import Carousel from "./sections/carousel/Carousel";
-import { navigate } from "gatsby";
-import { desktop, laptop, mdTablet } from "styles/breakpoints";
 
 const Checkout: React.FC = () => {
-  const bikesCart = useSelector(selectBikesCart);
+  const bikesCart = useAppSelector(selectBikesCart);
   const dispatch = useAppDispatch();
 
   const handleBuyClick = () => {
-    dispatch(postBuyRequestActions(bikesCart));
-    navigate("/success");
+    if (bikesCart.length > 0) {
+      dispatch(postBuyRequestActions(bikesCart));
+      dispatch(setResetCart());
+      navigate("/success");
+    }
   };
-
-  console.log(bikesCart);
 
   return (
     <>
@@ -40,7 +42,8 @@ const Checkout: React.FC = () => {
             <Typography
               type='link'
               fontWeight='fw600'
-              color={{ _: "primary", mdTablet: "white" }}
+              color={{ _: "primary", laptop: "white" }}
+              onClick={() => navigate("/")}
             >
               KILO.RIDE
             </Typography>
@@ -80,10 +83,6 @@ const StyledCheckout = styled(Box)`
     left: -4rem;
     z-index: -10;
     display: none;
-
-    /* @media ${mdTablet} {
-      left: -60rem;
-    } */
 
     @media ${laptop} {
       display: block;

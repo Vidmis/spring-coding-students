@@ -7,6 +7,7 @@ import { Typography } from "components/typography/Typography";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { useQuery } from "styles/breakpoints";
+import { navigate } from "gatsby";
 
 interface INavListItem {
   menuItem: string;
@@ -14,13 +15,7 @@ interface INavListItem {
 
 const NavListItem = ({ menuItem }: INavListItem) => (
   <Box as='li' mx='s16'>
-    <Typography
-      className='list-item'
-      type='link'
-      to='#'
-      cursor='pointer'
-      color='white'
-    >
+    <Typography className='list-item' type='link' to='#' color='white'>
       {menuItem}
     </Typography>
   </Box>
@@ -29,8 +24,6 @@ const NavListItem = ({ menuItem }: INavListItem) => (
 export const Navigation: React.FC = () => {
   const [isViewed, setIsViewed] = useState(false);
   const size = useQuery();
-
-  console.log(size.isMobile);
 
   return (
     <NavigationStyled
@@ -45,6 +38,7 @@ export const Navigation: React.FC = () => {
         type='link'
         fontWeight={{ _: "fw600" }}
         color='primary'
+        onClick={() => navigate("/")}
       >
         KILO.RIDE
       </Typography>

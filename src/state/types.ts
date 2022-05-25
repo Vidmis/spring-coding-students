@@ -3,7 +3,7 @@ import { rootReducer } from "./store";
 export interface IAnswerOptions {
   answerText: string;
   sizes?: string[];
-  bikeTypes: string[];
+  bikeType: string[];
 }
 export interface IQuestionsData {
   questionText: string;

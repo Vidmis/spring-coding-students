@@ -1,5 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
 import { IBikesCartState } from "../types";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState: IBikesCartState = {
   bikesCartData: [],
@@ -10,17 +10,19 @@ const userBikesCartSlice = createSlice({
   initialState,
   reducers: {
     setAddToCart(state, action) {
-      // "Mutate" the existing state, no return value needed
       state.bikesCartData.push(action.payload);
     },
     setDeleteFromCart(state, action) {
-      // Construct a new result array immutably and return it
       state.bikesCartData = state.bikesCartData.filter(
         (item) => item.id !== action.payload
       );
     },
+    setResetCart(state) {
+      state.bikesCartData = initialState.bikesCartData;
+    },
   },
 });
 
-export const { setAddToCart, setDeleteFromCart } = userBikesCartSlice.actions;
+export const { setAddToCart, setDeleteFromCart, setResetCart } =
+  userBikesCartSlice.actions;
 export default userBikesCartSlice;

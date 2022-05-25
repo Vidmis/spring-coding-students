@@ -1,8 +1,5 @@
-// export { default } from './home';
-
-import React from "react";
-
 import Home from "./home/index.tsx";
+import React from "react";
 
 const Landing = (props) => {
   return <Home />;

@@ -1,25 +1,20 @@
-import React, { useEffect, useState } from "react";
-import styled from "styled-components/macro";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css";
-import { Box, ContentWrapper, SectionWrapper } from "components";
-import { theme } from "styles/theme";
-import { IBikesDataSlice } from "state/types";
-import { useAppDispatch, useAppSelector } from "state/hooks";
+
+import { Navigation, Pagination } from "swiper";
+import React, { useEffect } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { selectBikes, selectUserBikeTypes } from "state/selectors";
-import { fetchBikesActions } from "state/sagasActions";
+import { useAppDispatch, useAppSelector } from "state/hooks";
+
 import BikeImageBox from "pages/checkout/layouts/BikeImageBox";
 import BikeSpecifications from "pages/checkout/layouts/BikeSpecifications";
+import { Box } from "components";
+import { fetchBikesActions } from "state/sagasActions";
 import { mdTablet } from "styles/breakpoints";
-
-interface ICarouselProps {
-  bikesData: IBikesDataSlice[];
-  matchingBikes: [];
-  setBikesSpecs: Object;
-}
+import styled from "styled-components/macro";
+import { theme } from "styles/theme";
 
 const Carousel: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -51,7 +46,7 @@ const Carousel: React.FC = () => {
       >
         {bikesData.map(({ url, bikeType, model, price, id }) =>
           matchingBikes.includes(bikeType) ? (
-            <SwiperSlide className='swiper'>
+            <SwiperSlide key={model + price} className='swiper'>
               <Box
                 display={{ _: "flex" }}
                 flexWrap={{ _: "wrap", mdTablet: "nowrap" }}

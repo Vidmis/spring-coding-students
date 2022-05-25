@@ -1,8 +1,4 @@
-import { combineReducers, CombinedState, AnyAction } from "redux";
-import { configureStore } from "@reduxjs/toolkit";
-import { persistReducer, persistStore } from "redux-persist";
-import createSagaMiddleware from "@redux-saga/core";
-import sessionStorage from "redux-persist/es/storage/session";
+import { AnyAction, CombinedState, combineReducers } from "redux";
 import {
   IBikesCartState,
   IBikesState,
@@ -10,12 +6,17 @@ import {
   IStepState,
   IUserAnswerSlice,
 } from "./types";
-import rootSaga from "./rootSaga";
+import { persistReducer, persistStore } from "redux-persist";
+
+import bikesCartReducer from "./features/userBikesCartSlice";
+import bikesReducer from "./features/bikesDataSlice";
+import { configureStore } from "@reduxjs/toolkit";
+import createSagaMiddleware from "@redux-saga/core";
 import questionReducer from "./features/questionsSlice";
+import rootSaga from "./rootSaga";
+import sessionStorage from "redux-persist/es/storage/session";
 import stepReducer from "./features/stepSlice";
 import userAnswerReducer from "./features/userAnswersSlice";
-import bikesReducer from "./features/bikesDataSlice";
-import bikesCartReducer from "./features/userBikesCartSlice";
 
 export interface RootState {
   question: IQuestionState;

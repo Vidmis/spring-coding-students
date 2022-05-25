@@ -39,7 +39,7 @@ export function* fetchBikesDataSaga() {
 
 export function* postBikesCartSaga({
   payload,
-}: PayloadAction<IBikesCartSlice>) {
+}: PayloadAction<IBikesCartSlice[]>) {
   try {
     const response: AxiosResponse = yield axios({
       method: "post",

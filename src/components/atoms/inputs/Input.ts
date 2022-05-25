@@ -8,7 +8,6 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   placeholder?: string;
   id?: string;
   name?: string;
-  value?: string | number | null;
   required?: any;
   onChange?: (e: FormEvent<HTMLInputElement>) => void | (() => void);
   autocomplete?: string;

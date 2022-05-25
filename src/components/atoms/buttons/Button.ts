@@ -1,7 +1,8 @@
+import { ButtonStyleProps, buttonStyle, compose } from "styled-system";
+
 import { Box } from "./../../wrappers/Box";
-import styled from "styled-components/macro";
-import { buttonStyle, ButtonStyleProps, compose } from "styled-system";
 import { Theme } from "styles/theme";
+import styled from "styled-components/macro";
 
 const buttonProps = compose(buttonStyle);
 

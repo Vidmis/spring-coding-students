@@ -1,14 +1,14 @@
+import { Box, Typography } from "components";
 import React, { useState } from "react";
-import styled from "styled-components/macro";
-import { Box, ContentWrapper, Typography } from "components";
-import { theme } from "styles/theme";
-import { BIKE_SIZES } from "consts";
-import { Button } from "components/atoms";
-import { useAppDispatch } from "state/hooks";
 import {
   setAddToCart,
   setDeleteFromCart,
 } from "state/features/userBikesCartSlice";
+
+import { BIKE_SIZES } from "consts";
+import { Button } from "components/atoms";
+import styled from "styled-components/macro";
+import { useAppDispatch } from "state/hooks";
 
 interface BikeSpecificationsProps {
   id: string;
@@ -24,13 +24,11 @@ const BikeSpecifications: React.FC<BikeSpecificationsProps> = ({
   price,
 }) => {
   const dispatch = useAppDispatch();
-  const [bikeSize, setBikeSize] = useState<{ size: string }>({
-    size: "",
+  const [bikeSize, setBikeSize] = useState<{ size: string | null }>({
+    size: null,
   });
 
   const discountPrice = price + 100;
-
-  console.log(id);
 
   const handleAddToCart = () => {
     dispatch(
@@ -39,11 +37,12 @@ const BikeSpecifications: React.FC<BikeSpecificationsProps> = ({
         bikeType,
         model,
         price,
-        size: "M",
+        size: "",
       })
     );
   };
   const handleRemoveFromCart = () => {
+    setBikeSize({ size: null });
     dispatch(setDeleteFromCart(id));
   };
 
@@ -55,12 +54,12 @@ const BikeSpecifications: React.FC<BikeSpecificationsProps> = ({
           mb={{ _: "s16" }}
           fontSize={{ _: "fs28", mdTablet: "fs48" }}
           fontWeight={{ _: "fw600" }}
-          lineHeight={{ _: "mMob", mdTablet: "md" }}
+          lineHeight={{ _: "mdMob", mdTablet: "md" }}
           color='dark'
         >
           {model.toUpperCase()}
         </Typography>
-        <Box display='flex'>
+        <Box as='span' display='flex'>
           <Typography
             fontSize={{ _: "fs16", mdTablet: "fs24" }}
             mr='s32'
@@ -87,7 +86,7 @@ const BikeSpecifications: React.FC<BikeSpecificationsProps> = ({
         <Typography
           fontSize={{ _: "fs28", mdTablet: "fs48" }}
           fontWeight={{ _: "fw400" }}
-          lineHeight={{ _: "mMob", mdTablet: "md" }}
+          lineHeight={{ _: "mdMob", mdTablet: "md" }}
           textDecoration='line-through'
           color='dark'
         >
@@ -96,7 +95,7 @@ const BikeSpecifications: React.FC<BikeSpecificationsProps> = ({
         <Typography
           fontSize={{ _: "fs36", mdTablet: "fs60" }}
           fontWeight={{ _: "fw700" }}
-          lineHeight={{ _: "mMob", mdTablet: "md" }}
+          lineHeight={{ _: "mdMob", mdTablet: "md" }}
           type='h3'
           color='primary'
         >
@@ -115,15 +114,14 @@ const BikeSpecifications: React.FC<BikeSpecificationsProps> = ({
         </Typography>
         <Box display='flex'>
           {BIKE_SIZES.map((size) => (
-            <Typography
+            <Box
               key={size}
-              type='body18'
-              fontWeight='fw600'
               mr='s24'
               onClick={() => setBikeSize({ ...bikeSize, size: size })}
             >
               {bikeSize.size === size ? (
                 <Box
+                  as='span'
                   backgroundColor='primaryHover'
                   color='white'
                   width='2rem'
@@ -133,7 +131,11 @@ const BikeSpecifications: React.FC<BikeSpecificationsProps> = ({
                   alignItems='center'
                   justifyContent='center'
                 >
-                  <Typography cursor='pointer' fontWeight='fw600'>
+                  <Typography
+                    type='body18'
+                    fontWeight='fw600'
+                    className='bike-size'
+                  >
                     {size.toUpperCase()}
                   </Typography>
                 </Box>
@@ -146,12 +148,17 @@ const BikeSpecifications: React.FC<BikeSpecificationsProps> = ({
                   alignItems='center'
                   justifyContent='center'
                 >
-                  <Typography cursor='pointer' color='dark' fontWeight='fw600'>
+                  <Typography
+                    type='body18'
+                    fontWeight='fw600'
+                    className='bike-size'
+                    color='dark'
+                  >
                     {size.toUpperCase()}
                   </Typography>
                 </Box>
               )}
-            </Typography>
+            </Box>
           ))}
         </Box>
       </Box>
@@ -163,17 +170,32 @@ const BikeSpecifications: React.FC<BikeSpecificationsProps> = ({
         alignItems='center'
         mt='s48'
       >
-        <Button
-          variant='custom'
-          width={{ _: "8rem", laptop: "10rem" }}
-          height={{ _: "3rem" }}
-          fontSize={{ _: "fs14", laptop: "fs16" }}
-          color='white'
-          backgroundColor='primary'
-          onClick={handleAddToCart}
-        >
-          + ADD TO CART
-        </Button>
+        {bikeSize.size ? (
+          <Button
+            variant='custom'
+            width={{ _: "8rem", laptop: "10rem" }}
+            height={{ _: "3rem" }}
+            fontSize={{ _: "fs14", laptop: "fs16" }}
+            color='white'
+            backgroundColor='primary'
+            onClick={handleAddToCart}
+          >
+            + ADD TO CART
+          </Button>
+        ) : (
+          <Button
+            variant='custom'
+            width={{ _: "8rem", laptop: "10rem" }}
+            height={{ _: "3rem" }}
+            fontSize={{ _: "fs14", laptop: "fs16" }}
+            color='dark'
+            backgroundColor='lightGray'
+            onClick={handleAddToCart}
+            disabled={true}
+          >
+            + ADD TO CART
+          </Button>
+        )}
         <Button
           variant='custom'
           width={{ _: "7rem" }}
@@ -192,4 +214,8 @@ const BikeSpecifications: React.FC<BikeSpecificationsProps> = ({
 
 export default BikeSpecifications;
 
-const SpecificationsWrapper = styled(Box)``;
+const SpecificationsWrapper = styled(Box)`
+  .bike-size {
+    cursor: pointer;
+  }
+`;

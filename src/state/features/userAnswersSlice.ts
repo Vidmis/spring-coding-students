@@ -1,6 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
 import { IUserAnswerSlice } from "../types";
-// import { QuizQuestions } from "./types";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState: IUserAnswerSlice = {
   userHeight: 0,

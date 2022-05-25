@@ -1,6 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
 import { IBikesState } from "../types";
-// import { QuizQuestions } from "./types";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState: IBikesState = {
   bikesData: [],

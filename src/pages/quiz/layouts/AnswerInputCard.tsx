@@ -1,10 +1,11 @@
-import React, { useState, FormEvent } from "react";
 import { Box, ContentWrapper, Typography } from "components";
-import { useAppDispatch, useAppSelector } from "state/hooks";
-import { IQuestionsData } from "state/types";
 import { Button, Input } from "components/atoms";
-import useNavigation from "hooks/useNavigation";
+import React, { FormEvent, useState } from "react";
+
+import { IQuestionsData } from "state/types";
 import { setUserHeight } from "state/features/userAnswersSlice";
+import { useAppDispatch } from "state/hooks";
+import { useNavigation } from "hooks";
 
 interface IAnswerInputCard {
   quizQA: IQuestionsData[];
@@ -34,8 +35,6 @@ const AnswerInputCard: React.FC<IAnswerInputCard> = ({ quizQA, dataStep }) => {
     dispatch(setUserHeight(personHeight));
     onNextStep();
   };
-
-  console.log(personHeight);
 
   return (
     <>

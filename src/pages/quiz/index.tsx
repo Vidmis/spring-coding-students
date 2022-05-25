@@ -1,13 +1,14 @@
+import { ContentWrapper, SectionWrapper, Typography } from "components";
 import React, { useEffect } from "react";
-import { ContentWrapper } from "components";
-import { useAppDispatch } from "state/hooks";
-import { fetchQuestionsActions } from "state/sagasActions";
-// import AnswerInputCard from "./layouts/AnswerInputCard";
-import AnswerCard from "./layouts/AnswerCard";
-import { useSelector } from "react-redux";
 import { selectQuizQA, selectStep } from "state/selectors";
-import { setBikeTypes } from "state/features/userAnswersSlice";
+
 import AdviceCard from "./layouts/AdviceCard";
+import AnswerLayout from "./layouts/AnswerLayout";
+import { fetchQuestionsActions } from "state/sagasActions";
+import { navigate } from "gatsby";
+import { setBikeTypes } from "state/features/userAnswersSlice";
+import { useAppDispatch } from "state/hooks";
+import { useSelector } from "react-redux";
 
 const Home: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -22,23 +23,42 @@ const Home: React.FC = () => {
   const onRenderStep = () => {
     switch (step) {
       case 0:
-        return <AnswerCard quizQA={quizQA} dataStep={step} />;
+        return <AnswerLayout quizQA={quizQA} dataStep={step} />;
       case 1:
-        return <AnswerCard quizQA={quizQA} dataStep={step} />;
+        return <AnswerLayout quizQA={quizQA} dataStep={step} />;
       case 2:
         return <AdviceCard />;
       case 3:
-        return <AnswerCard quizQA={quizQA} dataStep={step - 1} />;
+        return <AnswerLayout quizQA={quizQA} dataStep={step - 1} />;
       case 4:
         return (
-          <AnswerCard quizQA={quizQA} isLastCard={true} dataStep={step - 1} />
+          <AnswerLayout quizQA={quizQA} isLastCard={true} dataStep={step - 1} />
         );
     }
   };
 
   return (
     <>
-      <ContentWrapper maxWidth='100%'>{onRenderStep()}</ContentWrapper>
+      <ContentWrapper
+        maxWidth='100%'
+        height='100vh'
+        backgroundColor='lightGray'
+      >
+        <SectionWrapper p={{ _: "s24", mdTablet: "s64" }}>
+          <Typography
+            className='logo'
+            type='link'
+            m={{ _: "s24", mdTablet: "s64" }}
+            fontWeight={{ _: "fw600" }}
+            color='primary'
+            onClick={() => navigate("/")}
+          >
+            KILO.RIDE
+          </Typography>
+
+          {onRenderStep()}
+        </SectionWrapper>
+      </ContentWrapper>
     </>
   );
 };

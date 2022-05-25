@@ -17,6 +17,8 @@ import {
   MaxWidthProps,
   ColorProps,
   color,
+  BorderProps,
+  borders,
 } from "styled-system";
 
 import { Colors, Theme } from "styles/theme";
@@ -73,7 +75,8 @@ const typographyProperties = compose(
   typography,
   space,
   minWidth,
-  maxWidth
+  maxWidth,
+  borders
 );
 
 export interface TextProps
@@ -81,11 +84,11 @@ export interface TextProps
     TypographyProps<Theme>,
     MinWidthProps<Theme>,
     MaxWidthProps<Theme>,
-    ColorProps<Theme> {
+    ColorProps<Theme>,
+    BorderProps<Theme> {
   className?: string;
   type?: TextType;
   to?: string;
-  cursor?: string;
   textTransform?: Property.TextTransform;
   textDecoration?: Property.TextDecoration;
   onClick?: () => void;

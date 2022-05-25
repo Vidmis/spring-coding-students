@@ -1,42 +1,44 @@
-import styled from "styled-components/macro";
 import {
-  alignItems,
   AlignItemsProps,
-  grid,
-  GridProps,
-  backgroundColor,
   BackgroundColorProps,
-  border,
   BorderProps,
+  BordersProps,
   BoxShadowProps,
-  color,
   ColorProps,
+  DisplayProps,
+  FlexDirectionProps,
+  FlexWrapProps,
+  FontSizeProps,
+  GridProps,
+  JustifyContentProps,
+  LayoutProps,
+  PositionProps,
+  ShadowProps,
+  SpaceProps,
+  TextAlignProps,
+  ZIndexProps,
+  alignItems,
+  backgroundColor,
+  border,
+  borders,
+  color,
   compose,
   display,
-  DisplayProps,
   flexDirection,
-  FlexDirectionProps,
-  fontSize,
-  FontSizeProps,
-  justifyContent,
-  JustifyContentProps,
-  layout,
-  LayoutProps,
-  position,
-  PositionProps,
-  shadow,
-  ShadowProps,
-  space,
-  SpaceProps,
-  textAlign,
-  TextAlignProps,
-  zIndex,
-  ZIndexProps,
-  FlexWrapProps,
   flexWrap,
+  fontSize,
+  grid,
+  justifyContent,
+  layout,
+  position,
+  shadow,
+  space,
+  textAlign,
+  zIndex,
 } from "styled-system";
 
 import { Theme } from "styles/theme";
+import styled from "styled-components/macro";
 
 const boxProps = compose(
   color,
@@ -54,7 +56,8 @@ const boxProps = compose(
   justifyContent,
   alignItems,
   backgroundColor,
-  fontSize
+  fontSize,
+  borders
 );
 
 export interface IBoxStylesProps<T>
@@ -74,7 +77,9 @@ export interface IBoxStylesProps<T>
     FlexWrapProps<T>,
     AlignItemsProps<T>,
     BackgroundColorProps<T>,
-    FontSizeProps<T> {
+    FontSizeProps<T>,
+    BorderProps<T>,
+    BordersProps<T> {
   onClick?: () => void;
 }
 

@@ -1,10 +1,9 @@
-import React from "react";
-import styled from "styled-components/macro";
-import { Box, ContentWrapper, Image, Navigation, Typography } from "components";
-import { Theme, theme } from "styles/theme";
+import { Box, ContentWrapper, Image, Typography } from "components";
+
 import { Button } from "components/atoms";
+import React from "react";
+import { Theme } from "styles/theme";
 import { navigate } from "gatsby";
-import { backgroundColor } from "styled-system";
 
 interface SpecsBoxProps {
   header?: string;
@@ -52,19 +51,18 @@ const Header: React.FC = () => {
           borderRadius='b8'
         >
           <Typography
-            type='h2'
+            type='h1'
             mb={{ _: "s32" }}
             fontSize={{ _: "fs32", mdTablet: "fs48" }}
             fontWeight={{ _: "fw600" }}
-            lineHeight={{ _: "mMob", mdTablet: "md" }}
+            lineHeight={{ _: "mdMob", mdTablet: "md" }}
             color='dark'
           >
             You are one ride away,
             <Typography
-              type='h2'
               fontSize={{ _: "fs32", mdTablet: "fs48" }}
               fontWeight={{ _: "fw600" }}
-              lineHeight={{ _: "mMob", mdTablet: "md" }}
+              lineHeight={{ _: "mdMob", mdTablet: "md" }}
               color='primary'
             >
               from a good mood.

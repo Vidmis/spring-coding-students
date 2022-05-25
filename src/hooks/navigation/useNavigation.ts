@@ -1,7 +1,8 @@
-import { useAppDispatch } from "state/hooks";
-import { nextStep, prevStep, chooseStep } from "state/features/stepSlice";
+import { chooseStep, nextStep, prevStep } from "state/features/stepSlice";
 
-const useNavigation = () => {
+import { useAppDispatch } from "state/hooks";
+
+export const useNavigation = () => {
   const dispatch = useAppDispatch();
 
   const onNextStep = () => {
@@ -18,5 +19,3 @@ const useNavigation = () => {
 
   return { onNextStep, onPrevStep, selectStep };
 };
-
-export default useNavigation;

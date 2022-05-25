@@ -1,9 +1,10 @@
-import React from "react";
 import { Box, ContentWrapper, Navigation } from "components";
+
 import Header from "./sections/header/Header";
+import React from "react";
+import { mdTablet } from "styles/breakpoints";
 import styled from "styled-components/macro";
 import { theme } from "styles/theme";
-import { mdTablet, mobile, smTablet } from "styles/breakpoints";
 
 const Home: React.FC = () => {
   return (

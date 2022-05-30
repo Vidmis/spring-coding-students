@@ -1,19 +1,20 @@
 import { Box, ContentWrapper, Typography } from "components";
 import React, { ReactNode, useEffect, useState } from "react";
 import { Theme, theme } from "styles/theme";
+import { selectQuizQA, selectUserBikeTypes } from "state/selectors";
 import { useAppDispatch, useAppSelector } from "state/hooks";
 
 import { BorderProps } from "styled-system";
 import { Button } from "components/atoms";
 import { IQuestionsData } from "state/types";
+import { fetchQuestionsActions } from "state/sagasActions";
 import { navigate } from "gatsby";
-import { selectUserBikeTypes } from "state/selectors";
 import { setBikeTypes } from "state/features/userAnswersSlice";
 import styled from "styled-components/macro";
 import { useNavigation } from "hooks";
 
 interface IAnswerLayout {
-  quizQA: IQuestionsData[];
+  // quizQA: IQuestionsData[];
   isLastCard?: boolean;
   dataStep: number;
 }
@@ -39,16 +40,17 @@ const AnswerCard: React.FC<IAnswerCard> = ({ children, border }) => (
   </Typography>
 );
 
-const AnswerLayout: React.FC<IAnswerLayout> = ({
-  quizQA,
-  isLastCard,
-  dataStep,
-}) => {
+const AnswerLayout: React.FC<IAnswerLayout> = ({ isLastCard, dataStep }) => {
   const [selectedAnswer, setSelectedAnswer] = useState<Array<string>>([]);
   const [isDisabled, setIsDisabled] = useState(true);
   const { onNextStep, selectStep } = useNavigation();
+  const quizQA: IQuestionsData[] = useAppSelector(selectQuizQA);
   const dispatch = useAppDispatch();
   const answers = useAppSelector(selectUserBikeTypes);
+
+  useEffect(() => {
+    dispatch(fetchQuestionsActions());
+  }, []);
 
   const handleSelectAnswer = (answer: Array<string>) => {
     if (selectedAnswer.includes(answer)) {

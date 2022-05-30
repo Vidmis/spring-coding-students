@@ -1,7 +1,7 @@
-import Home from "./home/index.tsx";
+import Home from "./home/index";
 import React from "react";
 
-const Landing = (props) => {
+const Landing = () => {
   return <Home />;
 };
 

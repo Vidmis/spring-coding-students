@@ -261,7 +261,7 @@ export const theme = {
       fontWeight: 500,
       color: colors.white,
     },
-    link: {
+    Link: {
       fontSize: "1.5rem",
       fontWeight: 500,
       lineHeight: "2.25rem",

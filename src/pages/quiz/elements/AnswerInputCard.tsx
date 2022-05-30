@@ -1,20 +1,21 @@
 import { Box, ContentWrapper, Typography } from "components";
 import { Button, Input } from "components/atoms";
 import React, { FormEvent, useState } from "react";
+import { useAppDispatch, useAppSelector } from "state/hooks";
 
 import { IQuestionsData } from "state/types";
+import { selectQuizQA } from "state/selectors";
 import { setUserHeight } from "state/features/userAnswersSlice";
-import { useAppDispatch } from "state/hooks";
 import { useNavigation } from "hooks";
 
 interface IAnswerInputCard {
-  quizQA: IQuestionsData[];
   dataStep: number;
 }
 
-const AnswerInputCard: React.FC<IAnswerInputCard> = ({ quizQA, dataStep }) => {
+const AnswerInputCard: React.FC<IAnswerInputCard> = ({ dataStep }) => {
   const [personHeight, setPersonHeight] = useState<string>("");
   const [isDisablet, setIsDisabled] = useState(true);
+  const quizQA: IQuestionsData[] = useAppSelector(selectQuizQA);
   const dispatch = useAppDispatch();
   const { onNextStep } = useNavigation();
 

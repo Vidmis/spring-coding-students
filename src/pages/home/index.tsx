@@ -1,6 +1,6 @@
 import { Box, ContentWrapper, Navigation } from "components";
 
-import Header from "./sections/header/Header";
+import Header from "./sections/Header";
 import React from "react";
 import { mdTablet } from "styles/breakpoints";
 import styled from "styled-components/macro";
@@ -17,7 +17,7 @@ const Home: React.FC = () => {
           height='100vh'
         >
           <Box className='background-layer'></Box>
-          <Navigation />
+          <Navigation isMenuVisible={true} />
           <Header />
         </ContentWrapper>
       </StyledHeader>

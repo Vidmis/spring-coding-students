@@ -3,7 +3,7 @@ import { desktop, laptop } from "styles/breakpoints";
 import { useAppDispatch, useAppSelector } from "state/hooks";
 
 import { Button } from "components/atoms";
-import Carousel from "./sections/carousel/Carousel";
+import Carousel from "./sections/Carousel";
 import React from "react";
 import { navigate } from "gatsby";
 import { postBuyRequestActions } from "state/sagasActions";
@@ -40,7 +40,7 @@ const Checkout: React.FC = () => {
             alignItems='center'
           >
             <Typography
-              type='link'
+              type='Link'
               fontWeight='fw600'
               color={{ _: "primary", laptop: "white" }}
               onClick={() => navigate("/")}

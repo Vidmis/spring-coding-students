@@ -1,29 +1,28 @@
-import React, { ReactNode } from "react";
-import { Property } from "csstype";
-import styled from "styled-components/macro";
 import {
+  BorderProps,
+  ColorProps,
+  MaxWidthProps,
+  MinWidthProps,
+  SpaceProps,
+  TypographyProps,
+  borders,
+  color,
   compose,
   fontWeight,
   lineHeight,
+  maxWidth,
+  minWidth,
   space,
-  SpaceProps,
   textAlign,
-  TypographyProps,
   textStyle,
   typography,
-  minWidth,
-  maxWidth,
-  MinWidthProps,
-  MaxWidthProps,
-  ColorProps,
-  color,
-  BorderProps,
-  borders,
 } from "styled-system";
-
 import { Colors, Theme } from "styles/theme";
+import React, { ReactNode } from "react";
 
+import { Property } from "csstype";
 import { applyTextType } from "./TypographyHelpers";
+import styled from "styled-components/macro";
 
 export type TextType =
   | "h1"
@@ -34,7 +33,7 @@ export type TextType =
   | "h6"
   | "ul"
   | "list"
-  | "link"
+  | "Link"
   | "body14"
   | "body16"
   | "body18"
@@ -54,7 +53,7 @@ export enum TextTag {
   "span" = "span",
   "ul" = "ul",
   "list" = "li",
-  "link" = "a",
+  "Link" = "a",
   "body14" = "p",
   "body16" = "p",
   "body18" = "p",

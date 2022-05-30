@@ -40,8 +40,8 @@ export const rootReducer = (state: any, action: AnyAction) =>
 const persistConfig = {
   key: "root",
   storage: sessionStorage,
-  blacklist: ["config", "question", "step", "bikesCart"],
-  whitelist: ["answer", "bikes"],
+  blacklist: ["config", "question", "bikesCart"],
+  whitelist: ["answer", "bikes", "step"],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

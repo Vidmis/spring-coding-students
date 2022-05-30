@@ -1,8 +1,7 @@
-import { css } from "styled-components/macro";
-
-import { mobile } from "styles/breakpoints";
-import { Theme } from "styles/theme";
 import { TextType } from "./Typography";
+import { Theme } from "styles/theme";
+import { css } from "styled-components/macro";
+import { mobile } from "styles/breakpoints";
 
 export const applyTextType = (type: TextType, theme: Theme) => {
   switch (type) {
@@ -114,13 +113,13 @@ export const applyTextType = (type: TextType, theme: Theme) => {
         font-weight: ${theme.typography.body28.fontWeight};
         color: ${theme.typography.body28.color};
       `;
-    case "link":
+    case "Link":
       return css`
-        font-size: ${theme.typography.link.fontSize};
-        font-weight: ${theme.typography.link.fontWeight};
-        line-height: ${theme.typography.link.lineHeight};
-        color: ${theme.typography.link.color};
-        cursor: ${theme.typography.link.cursor};
+        font-size: ${theme.typography.Link.fontSize};
+        font-weight: ${theme.typography.Link.fontWeight};
+        line-height: ${theme.typography.Link.lineHeight};
+        color: ${theme.typography.Link.color};
+        cursor: ${theme.typography.Link.cursor};
       `;
     default:
       return;

@@ -1,8 +1,8 @@
-import students from 'assets/images/students.png';
-import gatsbyImg from 'assets/images/icon.png';
+import roadBikeImg from "assets/images/roadBike.png";
+import mtbBikeImg from "assets/images/mountainBike.png";
 
 export type Visuals = keyof typeof visuals;
 export const visuals: Record<string, string> = {
-	students,
-	gatsbyImg,
+  roadBikeImg,
+  mtbBikeImg,
 };

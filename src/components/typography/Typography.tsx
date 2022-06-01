@@ -1,79 +1,123 @@
-import { Property } from 'csstype';
-import React, { ReactNode } from 'react';
-import styled from 'styled-components/macro';
+import React, { ReactNode } from "react";
+import { Property } from "csstype";
+import styled from "styled-components/macro";
 import {
-	compose,
-	fontWeight,
-	lineHeight,
-	space,
-	SpaceProps,
-	textAlign,
-	TypographyProps,
-	textStyle,
-	typography,
-} from 'styled-system';
+  compose,
+  fontWeight,
+  lineHeight,
+  space,
+  SpaceProps,
+  textAlign,
+  TypographyProps,
+  textStyle,
+  typography,
+  minWidth,
+  maxWidth,
+  MinWidthProps,
+  MaxWidthProps,
+  ColorProps,
+  color,
+  BorderProps,
+  borders,
+} from "styled-system";
 
-import { Colors, Theme } from 'styles/theme';
+import { Colors, Theme } from "styles/theme";
 
-import { applyTextType } from './TypographyHelpers';
+import { applyTextType } from "./TypographyHelpers";
 
-export type TextType = 'h1' | 'h2' | 'h3' | 'body16' | 'caption12' | 'span';
+export type TextType =
+  | "h1"
+  | "h2"
+  | "h3"
+  | "h4"
+  | "h5"
+  | "h6"
+  | "ul"
+  | "list"
+  | "link"
+  | "body14"
+  | "body16"
+  | "body18"
+  | "body20"
+  | "body24"
+  | "body28"
+  | "caption12"
+  | "span";
 
 export enum TextTag {
-	'h1' = 'h1',
-	'h2' = 'h2',
-	'h3' = 'h3',
-	'span' = 'span',
-	'body16' = 'p',
-	'caption12' = 'p',
+  "h1" = "h1",
+  "h2" = "h2",
+  "h3" = "h3",
+  "h4" = "h4",
+  "h5" = "h5",
+  "h6" = "h6",
+  "span" = "span",
+  "ul" = "ul",
+  "list" = "li",
+  "link" = "a",
+  "body14" = "p",
+  "body16" = "p",
+  "body18" = "p",
+  "body20" = "p",
+  "body24" = "p",
+  "body28" = "p",
+  "caption12" = "p",
 }
 
 type AsAttributeType = string | React.ComponentType;
 
 const typographyProperties = compose(
-	textAlign,
-	fontWeight,
-	lineHeight,
-	textStyle,
-	typography,
-	space
+  color,
+  textAlign,
+  fontWeight,
+  lineHeight,
+  textStyle,
+  typography,
+  space,
+  minWidth,
+  maxWidth,
+  borders
 );
 
-export interface TextProps extends SpaceProps<Theme>, TypographyProps<Theme> {
-	color?: Colors;
-	type?: TextType;
-	textTransform?: Property.TextTransform;
-	textDecoration?: Property.TextDecoration;
-	onClick?: () => void;
-	children: ReactNode;
+export interface TextProps
+  extends SpaceProps<Theme>,
+    TypographyProps<Theme>,
+    MinWidthProps<Theme>,
+    MaxWidthProps<Theme>,
+    ColorProps<Theme>,
+    BorderProps<Theme> {
+  className?: string;
+  type?: TextType;
+  to?: string;
+  textTransform?: Property.TextTransform;
+  textDecoration?: Property.TextDecoration;
+  onClick?: () => void;
+  children: ReactNode;
 }
 
 export const Typography: React.FC<TextProps> = ({
-	type = 'body16',
-	children,
-	...props
+  type = "body16",
+  children,
+  ...props
 }) => {
-	const as = TextTag[type] as AsAttributeType;
+  const as = TextTag[type] as AsAttributeType;
 
-	return (
-		<Text as={as} type={type} {...props}>
-			{children}
-		</Text>
-	);
+  return (
+    <Text as={as} type={type} {...props}>
+      {children}
+    </Text>
+  );
 };
 
 const Text = styled.p<TextProps>`
-	padding: 0;
+  padding: 0;
 
-	${({ type, theme }) =>
-		type && applyTextType(type as TextType, theme as Theme)};
+  ${({ type, theme }) =>
+    type && applyTextType(type as TextType, theme as Theme)};
 
-	color: ${({ theme, color }) =>
-		color ? theme.colors[color] : theme.colors.white};
-
-	&& {
-		${typographyProperties}
-	}
-	text-transform: ${({ textTransform }) => textTransform || ''};
-	text-decoration: ${({ textDecoration }) => textDecoration || ''};
+  && {
+    ${typographyProperties}
+  }
+  text-transform: ${({ textTransform }) => textTransform || ""};
+  text-decoration: ${({ textDecoration }) => textDecoration || ""};
 `;

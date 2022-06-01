@@ -8,16 +8,19 @@ import { IQuestionsData } from "state/types";
 import { fetchQuestionsActions } from "state/sagasActions";
 import { setBikeTypes } from "state/features/userAnswersSlice";
 import { useAppDispatch } from "state/hooks";
+import { useNavigation } from "hooks";
 import { useSelector } from "react-redux";
 
 const Home: React.FC = () => {
   const dispatch = useAppDispatch();
   const quizQA: IQuestionsData[] = useSelector(selectQuizQA);
   const step = useSelector(selectStep);
+  const { onNextStep, onSelectStep } = useNavigation();
 
   useEffect(() => {
     dispatch(setBikeTypes([]));
     dispatch(fetchQuestionsActions());
+    onSelectStep(0);
   }, []);
 
   const onRenderStep = (cardType: string) => {

@@ -11,6 +11,7 @@ import { useAppDispatch, useAppSelector } from "state/hooks";
 
 import BikeImageBox from "pages/checkout/elements/BikeImageBox";
 import BikeSpecifications from "pages/checkout/elements/BikeSpecifications";
+import { Bikes } from "state/types";
 import { Box } from "components";
 import { fetchBikesActions } from "state/sagasActions";
 import styled from "styled-components/macro";
@@ -18,17 +19,24 @@ import { theme } from "styles/theme";
 
 const Carousel: React.FC = () => {
   const dispatch = useAppDispatch();
-  const answers = useAppSelector(selectUserBikeTypes);
+  const answers: string[] = useAppSelector(selectUserBikeTypes)
+    .flat()
+    .join(" ")
+    .split(" ");
   const bikesData = useAppSelector(selectBikes);
+
+  console.log(answers);
 
   useEffect(() => {
     dispatch(fetchBikesActions());
   }, []);
 
-  const sortedBikes = answers.flat(2).reduce((bikeMatch, bike) => {
+  const sortedBikes = answers.reduce((bikeMatch, bike) => {
     bikeMatch[bike] = (bikeMatch[bike] || 0) + 1;
     return bikeMatch;
   }, {});
+
+  console.log(sortedBikes);
 
   const matchingBikes = Object.keys(sortedBikes).filter(
     (bike) =>

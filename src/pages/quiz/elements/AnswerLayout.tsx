@@ -1,14 +1,13 @@
 import { Box, ContentWrapper, Typography } from "components";
 import React, { ReactNode, useEffect, useState } from "react";
-import { Theme, theme } from "styles/theme";
-import { selectQuizQA, selectUserBikeTypes } from "state/selectors";
 import { useAppDispatch, useAppSelector } from "state/hooks";
 
-import { BorderProps } from "styled-system";
 import { Button } from "components/atoms";
+import { Colors } from "styles/theme";
 import { IQuestionsData } from "state/types";
 import { fetchQuestionsActions } from "state/sagasActions";
 import { navigate } from "gatsby";
+import { selectUserBikeTypes } from "state/selectors";
 import { setBikeTypes } from "state/features/userAnswersSlice";
 import styled from "styled-components/macro";
 import { useNavigation } from "hooks";
@@ -19,10 +18,10 @@ interface IAnswerLayout {
 }
 interface IAnswerCard {
   children: ReactNode;
-  border?: BorderProps<Theme>;
+  color?: Colors;
 }
 
-const AnswerCard: React.FC<IAnswerCard> = ({ children, border }) => (
+const AnswerCard: React.FC<IAnswerCard> = ({ children, color }) => (
   <Typography
     fontSize={{ _: "fs18", mdTablet: "fs20" }}
     lineHeight={{ _: "smMob", mdTablet: "smMob" }}
@@ -33,16 +32,17 @@ const AnswerCard: React.FC<IAnswerCard> = ({ children, border }) => (
     textAlign='center'
     color='dark'
     borderRadius='b8'
-    border={border ? border : "unset"}
+    border='1px solid'
+    borderColor={color ? color : "gray"}
   >
     {children}
   </Typography>
 );
 
 const AnswerLayout: React.FC<IAnswerLayout> = ({ quizQA, step }) => {
-  const [selectedAnswer, setSelectedAnswer] = useState<Array<string>>([]);
+  const [selectedAnswer, setSelectedAnswer] = useState<string[]>([]);
   const [isDisabled, setIsDisabled] = useState(true);
-  const { onNextStep, selectStep } = useNavigation();
+  const { onNextStep } = useNavigation();
   const dispatch = useAppDispatch();
   const answers = useAppSelector(selectUserBikeTypes);
 
@@ -50,7 +50,7 @@ const AnswerLayout: React.FC<IAnswerLayout> = ({ quizQA, step }) => {
     dispatch(fetchQuestionsActions());
   }, []);
 
-  const handleSelectAnswer = (answer: Array<string>) => {
+  const handleSelectAnswer = (answer: string) => {
     if (selectedAnswer.includes(answer)) {
       setSelectedAnswer(selectedAnswer.filter((item) => item !== answer));
     } else if (quizQA[step]?.answerOptions.length <= 2) {
@@ -58,6 +58,7 @@ const AnswerLayout: React.FC<IAnswerLayout> = ({ quizQA, step }) => {
     } else {
       setSelectedAnswer([...selectedAnswer, answer]);
     }
+    console.log(answer);
   };
 
   useEffect(() => {
@@ -74,7 +75,6 @@ const AnswerLayout: React.FC<IAnswerLayout> = ({ quizQA, step }) => {
     setIsDisabled(true);
     if (step >= quizQA?.length - 1) {
       navigate("/checkout");
-      selectStep(0);
     } else {
       onNextStep();
     }
@@ -84,7 +84,7 @@ const AnswerLayout: React.FC<IAnswerLayout> = ({ quizQA, step }) => {
     <AnswerLayoutStyled>
       <ContentWrapper
         maxWidth='100%'
-        m={{ _: "s24", mdTablet: "s64" }}
+        m={{ _: "s24", mdTablet: "s16" }}
         display='flex'
         flexDirection='column'
         alignItems='center'
@@ -105,16 +105,14 @@ const AnswerLayout: React.FC<IAnswerLayout> = ({ quizQA, step }) => {
               <Box
                 className='answers'
                 as='li'
-                onClick={() => handleSelectAnswer(bikeType)}
+                onClick={() => handleSelectAnswer(bikeType.join(" "))}
                 key={index}
                 minWidth='18rem'
                 maxWidth='24rem'
                 my={{ _: "s10" }}
               >
-                {selectedAnswer.includes(bikeType) ? (
-                  <AnswerCard border={theme.borders.b_primary}>
-                    {answerText}
-                  </AnswerCard>
+                {selectedAnswer.includes(bikeType.join(" ")) ? (
+                  <AnswerCard color='primary'>{answerText}</AnswerCard>
                 ) : (
                   <AnswerCard>{answerText}</AnswerCard>
                 )}

@@ -1,4 +1,4 @@
-import { darken, lighten } from "polished";
+import { lighten } from "polished";
 
 export type Colors = keyof typeof colors;
 

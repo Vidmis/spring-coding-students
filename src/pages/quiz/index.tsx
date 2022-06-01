@@ -22,9 +22,6 @@ const Home: React.FC = () => {
   }, []);
 
   const onRenderStep = (cardType: string) => {
-    console.log(quizQA.length);
-    console.log(step + 1);
-
     switch (cardType) {
       case "singleAnswer":
         return <AnswerLayout quizQA={quizQA} step={step} />;

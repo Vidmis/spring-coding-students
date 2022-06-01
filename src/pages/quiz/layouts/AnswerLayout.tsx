@@ -15,7 +15,7 @@ import { useNavigation } from "hooks";
 interface IAnswerLayout {
   quizQA: IQuestionsData[];
   isLastCard?: boolean;
-  dataStep: number;
+  step: number;
 }
 interface IAnswerCard {
   children: ReactNode;
@@ -39,11 +39,7 @@ const AnswerCard: React.FC<IAnswerCard> = ({ children, border }) => (
   </Typography>
 );
 
-const AnswerLayout: React.FC<IAnswerLayout> = ({
-  quizQA,
-  isLastCard,
-  dataStep,
-}) => {
+const AnswerLayout: React.FC<IAnswerLayout> = ({ quizQA, step }) => {
   const [selectedAnswer, setSelectedAnswer] = useState<Array<string>>([]);
   const [isDisabled, setIsDisabled] = useState(true);
   const { onNextStep, selectStep } = useNavigation();
@@ -53,7 +49,7 @@ const AnswerLayout: React.FC<IAnswerLayout> = ({
   const handleSelectAnswer = (answer: Array<string>) => {
     if (selectedAnswer.includes(answer)) {
       setSelectedAnswer(selectedAnswer.filter((item) => item !== answer));
-    } else if (quizQA[dataStep]?.answerOptions.length <= 2) {
+    } else if (quizQA[step]?.answerOptions.length <= 2) {
       setSelectedAnswer([answer]);
     } else {
       setSelectedAnswer([...selectedAnswer, answer]);
@@ -72,11 +68,11 @@ const AnswerLayout: React.FC<IAnswerLayout> = ({
     dispatch(setBikeTypes([...answers, selectedAnswer]));
     setSelectedAnswer([]);
     setIsDisabled(true);
-    if (!isLastCard) {
-      onNextStep();
-    } else {
+    if (step >= quizQA?.length - 1) {
       navigate("/checkout");
       selectStep(0);
+    } else {
+      onNextStep();
     }
   };
 
@@ -96,11 +92,11 @@ const AnswerLayout: React.FC<IAnswerLayout> = ({
             fontWeight={{ _: "fw700", mdTablet: "fw600" }}
             color='dark'
           >
-            {quizQA[dataStep]?.questionText}
+            {quizQA[step]?.questionText}
           </Typography>
         </Box>
         <Box>
-          {quizQA[dataStep]?.answerOptions.map(
+          {quizQA[step]?.answerOptions.map(
             ({ bikeType, answerText }, index: number) => (
               <Box
                 className='answers'

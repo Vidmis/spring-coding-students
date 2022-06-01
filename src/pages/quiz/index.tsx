@@ -4,6 +4,7 @@ import { selectQuizQA, selectStep } from "state/selectors";
 
 import AdviceCard from "./layouts/AdviceCard";
 import AnswerLayout from "./layouts/AnswerLayout";
+import { IQuestionsData } from "state/types";
 import { fetchQuestionsActions } from "state/sagasActions";
 import { navigate } from "gatsby";
 import { setBikeTypes } from "state/features/userAnswersSlice";
@@ -12,7 +13,7 @@ import { useSelector } from "react-redux";
 
 const Home: React.FC = () => {
   const dispatch = useAppDispatch();
-  const quizQA = useSelector(selectQuizQA);
+  const quizQA: IQuestionsData[] = useSelector(selectQuizQA);
   const step = useSelector(selectStep);
 
   useEffect(() => {
@@ -20,20 +21,17 @@ const Home: React.FC = () => {
     dispatch(fetchQuestionsActions());
   }, []);
 
-  const onRenderStep = () => {
-    switch (step) {
-      case 0:
-        return <AnswerLayout quizQA={quizQA} dataStep={step} />;
-      case 1:
-        return <AnswerLayout quizQA={quizQA} dataStep={step} />;
-      case 2:
-        return <AdviceCard />;
-      case 3:
-        return <AnswerLayout quizQA={quizQA} dataStep={step - 1} />;
-      case 4:
-        return (
-          <AnswerLayout quizQA={quizQA} isLastCard={true} dataStep={step - 1} />
-        );
+  const onRenderStep = (cardType: string) => {
+    console.log(quizQA.length);
+    console.log(step + 1);
+
+    switch (cardType) {
+      case "singleAnswer":
+        return <AnswerLayout quizQA={quizQA} step={step} />;
+      case "multiAnswer":
+        return <AnswerLayout quizQA={quizQA} step={step} />;
+      case "advice":
+        return <AdviceCard quizQA={quizQA} step={step} />;
     }
   };
 
@@ -56,7 +54,7 @@ const Home: React.FC = () => {
             KILO.RIDE
           </Typography>
 
-          {onRenderStep()}
+          {onRenderStep(quizQA[step]?.questionType)}
         </SectionWrapper>
       </ContentWrapper>
     </>

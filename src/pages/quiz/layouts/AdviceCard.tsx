@@ -1,13 +1,27 @@
 import { ContentWrapper, Typography } from "components";
 
 import { Button } from "components/atoms";
+import { IQuestionsData } from "state/types";
 import React from "react";
+import { navigate } from "gatsby";
 import { useNavigation } from "hooks";
 
-interface AdviceCardProps {}
+interface AdviceCardProps {
+  step: number;
+  quizQA: IQuestionsData[];
+}
 
-const AdviceCard: React.FC<AdviceCardProps> = () => {
-  const { onNextStep } = useNavigation();
+const AdviceCard: React.FC<AdviceCardProps> = ({ quizQA, step }) => {
+  const { onNextStep, selectStep } = useNavigation();
+
+  const handleOnClick = () => {
+    if (step >= quizQA?.length - 1) {
+      navigate("/checkout");
+      selectStep(0);
+    } else {
+      onNextStep();
+    }
+  };
 
   return (
     <>
@@ -26,7 +40,7 @@ const AdviceCard: React.FC<AdviceCardProps> = () => {
           mt={{ _: "s64" }}
           width='10rem'
           height='3rem'
-          onClick={onNextStep}
+          onClick={handleOnClick}
         >
           Continue
         </Button>

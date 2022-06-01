@@ -6,6 +6,7 @@ export interface IAnswerOptions {
   bikeType: string[];
 }
 export interface IQuestionsData {
+  questionType: string;
   questionText: string;
   answerOptions: IAnswerOptions[];
 }

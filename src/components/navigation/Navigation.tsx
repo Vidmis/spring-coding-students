@@ -35,7 +35,6 @@ export const Navigation: React.FC<INavigation> = ({ isMenuVisible }) => {
       display={{ _: "flex" }}
       justifyContent={{ _: "space-between" }}
       px={{ _: "s32" }}
-      pt={{ _: "s32" }}
       zIndex='10'
     >
       <Typography

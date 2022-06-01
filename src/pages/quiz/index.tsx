@@ -1,4 +1,9 @@
-import { ContentWrapper, SectionWrapper, Typography } from "components";
+import {
+  ContentWrapper,
+  Navigation,
+  SectionWrapper,
+  Typography,
+} from "components";
 import React, { useEffect } from "react";
 import { selectQuizQA, selectStep } from "state/selectors";
 
@@ -38,19 +43,10 @@ const Home: React.FC = () => {
         maxWidth='100%'
         height='100vh'
         backgroundColor='lightGray'
+        pt={{ _: "s32" }}
       >
+        <Navigation isMenuVisible={false} />
         <SectionWrapper p={{ _: "s24", mdTablet: "s64" }}>
-          <Typography
-            className='logo'
-            type='Link'
-            m={{ _: "s24", mdTablet: "s64" }}
-            fontWeight={{ _: "fw600" }}
-            color='primary'
-            onClick={() => navigate("/")}
-          >
-            KILO.RIDE
-          </Typography>
-
           {onRenderStep()}
         </SectionWrapper>
       </ContentWrapper>

@@ -12,6 +12,7 @@ const Home: React.FC = () => {
       <StyledHeader height='100vh'>
         <ContentWrapper
           px={{ _: "s0", mdTablet: "s128" }}
+          pt={{ _: "s32" }}
           position='relative'
           overflow='hidden'
           height='100vh'

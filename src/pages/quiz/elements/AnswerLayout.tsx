@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from "state/hooks";
 import { Button } from "components/atoms";
 import { Colors } from "styles/theme";
 import { IQuestionsData } from "state/types";
+import { ROUTES } from "consts";
 import { fetchQuestionsActions } from "state/sagasActions";
 import { navigate } from "gatsby";
 import { selectUserBikeTypes } from "state/selectors";
@@ -74,7 +75,7 @@ const AnswerLayout: React.FC<IAnswerLayout> = ({ quizQA, step }) => {
     setSelectedAnswer([]);
     setIsDisabled(true);
     if (step >= quizQA?.length - 1) {
-      navigate("/checkout");
+      navigate(ROUTES.CHECKOUT);
     } else {
       onNextStep();
     }
@@ -121,32 +122,18 @@ const AnswerLayout: React.FC<IAnswerLayout> = ({ quizQA, step }) => {
           )}
         </Box>
         <Box mt={{ _: "s48" }}>
-          {!isDisabled ? (
-            <Button
-              variant='custom'
-              color='white'
-              backgroundColor='primary'
-              fontSize='fs16'
-              width='10rem'
-              height='3rem'
-              onClick={handleNextStep}
-            >
-              Continue
-            </Button>
-          ) : (
-            <Button
-              variant='custom'
-              color='dark'
-              backgroundColor='white'
-              fontSize='fs16'
-              width='10rem'
-              height='3rem'
-              onClick={handleNextStep}
-              disabled={isDisabled}
-            >
-              Continue
-            </Button>
-          )}
+          <Button
+            variant='custom'
+            color={isDisabled ? "dark" : "white"}
+            backgroundColor={isDisabled ? "white" : "primary"}
+            fontSize='fs16'
+            width='10rem'
+            height='3rem'
+            onClick={handleNextStep}
+            disabled={isDisabled}
+          >
+            Continue
+          </Button>
         </Box>
       </ContentWrapper>
     </AnswerLayoutStyled>

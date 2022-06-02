@@ -8,6 +8,7 @@ import {
 import React, { useEffect } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ROUTES } from "consts";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { navigate } from "gatsby";
 import styled from "styled-components/macro";
@@ -16,7 +17,7 @@ import { theme } from "styles/theme";
 const Success: React.FC = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigate("/");
+      navigate(ROUTES.HOME);
     }, 10000);
     return () => clearTimeout(timer);
   }, []);

@@ -1,6 +1,7 @@
 import { Box, ContentWrapper, Image, Typography } from "components";
 
 import { Button } from "components/atoms";
+import { ROUTES } from "consts";
 import React from "react";
 import { Theme } from "styles/theme";
 import { navigate } from "gatsby";
@@ -77,7 +78,7 @@ const Header: React.FC = () => {
         <Box className='quiz-box'>
           <Button
             onClick={() => {
-              navigate("/quiz");
+              navigate(ROUTES.QUIZ);
             }}
             variant='primary'
             boxShadow='0px 0px 18px -10px black'

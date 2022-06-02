@@ -1,8 +1,8 @@
+import { MENU_LIST, ROUTES } from "consts";
 import React, { useState } from "react";
 
 import { Box } from "components/wrappers/Box";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { MENU_LIST } from "consts";
 import { Typography } from "components/typography/Typography";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { navigate } from "gatsby";
@@ -42,7 +42,7 @@ export const Navigation: React.FC<INavigation> = ({ isMenuVisible }) => {
         type='Link'
         fontWeight={{ _: "fw600" }}
         color='primary'
-        onClick={() => navigate("/")}
+        onClick={() => navigate(ROUTES.HOME)}
       >
         KILO.RIDE
       </Typography>

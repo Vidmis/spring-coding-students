@@ -11,7 +11,6 @@ import { useAppDispatch, useAppSelector } from "state/hooks";
 
 import BikeImageBox from "pages/checkout/elements/BikeImageBox";
 import BikeSpecifications from "pages/checkout/elements/BikeSpecifications";
-import { Bikes } from "state/types";
 import { Box } from "components";
 import { fetchBikesActions } from "state/sagasActions";
 import styled from "styled-components/macro";

@@ -1,5 +1,5 @@
 import { Box, Typography } from "components";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   setAddToCart,
   setDeleteFromCart,
@@ -119,45 +119,28 @@ const BikeSpecifications: React.FC<BikeSpecificationsProps> = ({
               mr='s24'
               onClick={() => setBikeSize({ ...bikeSize, size: size })}
             >
-              {bikeSize.size === size ? (
-                <Box
-                  as='span'
-                  backgroundColor='primaryHover'
-                  color='white'
-                  width='2rem'
-                  height='2rem'
-                  borderRadius='bFull'
-                  display='flex'
-                  alignItems='center'
-                  justifyContent='center'
+              <Box
+                as={bikeSize.size === size ? "span" : "unset"}
+                backgroundColor={
+                  bikeSize.size === size ? "primaryHover" : "unset"
+                }
+                color={bikeSize.size === size ? "white" : "unset"}
+                width='2rem'
+                height='2rem'
+                borderRadius='bFull'
+                display='flex'
+                alignItems='center'
+                justifyContent='center'
+              >
+                <Typography
+                  type='body18'
+                  fontWeight='fw600'
+                  className='bike-size'
+                  color={bikeSize.size === size ? "unset" : "dark"}
                 >
-                  <Typography
-                    type='body18'
-                    fontWeight='fw600'
-                    className='bike-size'
-                  >
-                    {size.toUpperCase()}
-                  </Typography>
-                </Box>
-              ) : (
-                <Box
-                  width='2rem'
-                  height='2rem'
-                  borderRadius='bFull'
-                  display='flex'
-                  alignItems='center'
-                  justifyContent='center'
-                >
-                  <Typography
-                    type='body18'
-                    fontWeight='fw600'
-                    className='bike-size'
-                    color='dark'
-                  >
-                    {size.toUpperCase()}
-                  </Typography>
-                </Box>
-              )}
+                  {size.toUpperCase()}
+                </Typography>
+              </Box>
             </Box>
           ))}
         </Box>
@@ -170,32 +153,19 @@ const BikeSpecifications: React.FC<BikeSpecificationsProps> = ({
         alignItems='center'
         mt='s48'
       >
-        {bikeSize.size ? (
-          <Button
-            variant='custom'
-            width={{ _: "8rem", laptop: "10rem" }}
-            height={{ _: "3rem" }}
-            fontSize={{ _: "fs14", laptop: "fs16" }}
-            color='white'
-            backgroundColor='primary'
-            onClick={handleAddToCart}
-          >
-            + ADD TO CART
-          </Button>
-        ) : (
-          <Button
-            variant='custom'
-            width={{ _: "8rem", laptop: "10rem" }}
-            height={{ _: "3rem" }}
-            fontSize={{ _: "fs14", laptop: "fs16" }}
-            color='dark'
-            backgroundColor='lightGray'
-            onClick={handleAddToCart}
-            disabled={true}
-          >
-            + ADD TO CART
-          </Button>
-        )}
+        <Button
+          variant='custom'
+          width={{ _: "8rem", laptop: "10rem" }}
+          height={{ _: "3rem" }}
+          fontSize={{ _: "fs14", laptop: "fs16" }}
+          color={bikeSize.size ? "white" : "dark"}
+          backgroundColor={bikeSize.size ? "primary" : "lightGray"}
+          onClick={handleAddToCart}
+          disabled={bikeSize.size ? false : true}
+        >
+          + ADD TO CART
+        </Button>
+
         <Button
           variant='custom'
           width={{ _: "7rem" }}

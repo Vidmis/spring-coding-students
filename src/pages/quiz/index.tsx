@@ -1,21 +1,20 @@
 import { ContentWrapper, Navigation, SectionWrapper } from "components";
 import React, { useEffect } from "react";
 import { selectQuizQA, selectStep } from "state/selectors";
+import { useAppDispatch, useAppSelector } from "state/hooks";
 
 import AdviceCard from "./elements/AdviceCard";
 import AnswerLayout from "./elements/AnswerLayout";
 import { IQuestionsData } from "state/types";
 import { fetchQuestionsActions } from "state/sagasActions";
 import { setBikeTypes } from "state/features/userAnswersSlice";
-import { useAppDispatch } from "state/hooks";
 import { useNavigation } from "hooks";
-import { useSelector } from "react-redux";
 
 const Home: React.FC = () => {
   const dispatch = useAppDispatch();
-  const quizQA: IQuestionsData[] = useSelector(selectQuizQA);
-  const step = useSelector(selectStep);
-  const { onNextStep, onSelectStep } = useNavigation();
+  const quizQA: IQuestionsData[] = useAppSelector(selectQuizQA);
+  const step = useAppSelector(selectStep);
+  const { onSelectStep } = useNavigation();
 
   useEffect(() => {
     dispatch(setBikeTypes([]));

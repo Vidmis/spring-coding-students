@@ -2,6 +2,7 @@ import { Box, ContentWrapper, Typography } from "components";
 import React, { ReactNode, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "state/hooks";
 
+// import { Box } from "components";
 import { Button } from "components/atoms";
 import { Colors } from "styles/theme";
 import { IQuestionsData } from "state/types";

@@ -1,5 +1,5 @@
 import { Box, Typography } from "components";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   setAddToCart,
   setDeleteFromCart,
@@ -120,10 +120,8 @@ const BikeSpecifications: React.FC<BikeSpecificationsProps> = ({
               onClick={() => setBikeSize({ ...bikeSize, size: size })}
             >
               <Box
-                as={bikeSize.size === size ? "span" : "unset"}
-                backgroundColor={
-                  bikeSize.size === size ? "primaryHover" : "unset"
-                }
+                as='span'
+                backgroundColor={bikeSize.size === size ? "primaryHover" : null}
                 color={bikeSize.size === size ? "white" : "unset"}
                 width='2rem'
                 height='2rem'
@@ -136,7 +134,7 @@ const BikeSpecifications: React.FC<BikeSpecificationsProps> = ({
                   type='body18'
                   fontWeight='fw600'
                   className='bike-size'
-                  color={bikeSize.size === size ? "unset" : "dark"}
+                  color={bikeSize.size === size ? null : "dark"}
                 >
                   {size.toUpperCase()}
                 </Typography>

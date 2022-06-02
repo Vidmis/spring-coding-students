@@ -59,7 +59,6 @@ const AnswerLayout: React.FC<IAnswerLayout> = ({ quizQA, step }) => {
     } else {
       setSelectedAnswer([...selectedAnswer, answer]);
     }
-    console.log(answer);
   };
 
   useEffect(() => {

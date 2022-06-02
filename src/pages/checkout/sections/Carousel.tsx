@@ -24,21 +24,17 @@ const Carousel: React.FC = () => {
     .split(" ");
   const bikesData = useAppSelector(selectBikes);
 
-  console.log(answers);
-
   useEffect(() => {
     dispatch(fetchBikesActions());
   }, []);
 
-  const sortedBikes = answers.reduce((bikeMatch, bike) => {
+  const sortedBikes = answers.reduce((bikeMatch, bike: string) => {
     bikeMatch[bike] = (bikeMatch[bike] || 0) + 1;
     return bikeMatch;
-  }, {});
-
-  console.log(sortedBikes);
+  }, {} as any);
 
   const matchingBikes = Object.keys(sortedBikes).filter(
-    (bike) =>
+    (bike: string) =>
       sortedBikes[bike] === Math.max.apply(null, Object.values(sortedBikes))
   );
   return (

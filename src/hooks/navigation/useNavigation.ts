@@ -13,9 +13,9 @@ export const useNavigation = () => {
     dispatch(prevStep());
   };
 
-  const selectStep = (stepIndex: number) => {
+  const onSelectStep = (stepIndex: number) => {
     dispatch(chooseStep(stepIndex));
   };
 
-  return { onNextStep, onPrevStep, selectStep };
+  return { onNextStep, onPrevStep, onSelectStep };
 };

@@ -1,10 +1,11 @@
 import { Box, ContentWrapper, Typography } from "components";
+import React, { useEffect } from "react";
 import { desktop, laptop } from "styles/breakpoints";
 import { useAppDispatch, useAppSelector } from "state/hooks";
 
 import { Button } from "components/atoms";
-import Carousel from "./sections/carousel/Carousel";
-import React from "react";
+import Carousel from "./sections/Carousel";
+import { ROUTES } from "consts";
 import { navigate } from "gatsby";
 import { postBuyRequestActions } from "state/sagasActions";
 import { selectBikesCart } from "state/selectors";
@@ -16,11 +17,15 @@ const Checkout: React.FC = () => {
   const bikesCart = useAppSelector(selectBikesCart);
   const dispatch = useAppDispatch();
 
+  useEffect(() => {
+    dispatch(setResetCart());
+  }, []);
+
   const handleBuyClick = () => {
     if (bikesCart.length > 0) {
       dispatch(postBuyRequestActions(bikesCart));
       dispatch(setResetCart());
-      navigate("/success");
+      navigate(ROUTES.SUCCESS);
     }
   };
 
@@ -40,10 +45,10 @@ const Checkout: React.FC = () => {
             alignItems='center'
           >
             <Typography
-              type='link'
+              type='Link'
               fontWeight='fw600'
               color={{ _: "primary", laptop: "white" }}
-              onClick={() => navigate("/")}
+              onClick={() => navigate(ROUTES.HOME)}
             >
               KILO.RIDE
             </Typography>

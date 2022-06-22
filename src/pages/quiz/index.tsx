@@ -1,24 +1,25 @@
-import { ContentWrapper, SectionWrapper, Typography } from "components";
+import { ContentWrapper, Navigation, SectionWrapper } from "components";
 import React, { useEffect } from "react";
 import { selectQuizQA, selectStep } from "state/selectors";
+import { useAppDispatch, useAppSelector } from "state/hooks";
 
-import AdviceCard from "./layouts/AdviceCard";
-import AnswerLayout from "./layouts/AnswerLayout";
+import AdviceCard from "./elements/AdviceCard";
+import AnswerLayout from "./elements/AnswerLayout";
 import { IQuestionsData } from "state/types";
 import { fetchQuestionsActions } from "state/sagasActions";
-import { navigate } from "gatsby";
 import { setBikeTypes } from "state/features/userAnswersSlice";
-import { useAppDispatch } from "state/hooks";
-import { useSelector } from "react-redux";
+import { useNavigation } from "hooks";
 
 const Home: React.FC = () => {
   const dispatch = useAppDispatch();
-  const quizQA: IQuestionsData[] = useSelector(selectQuizQA);
-  const step = useSelector(selectStep);
+  const quizQA: IQuestionsData[] = useAppSelector(selectQuizQA);
+  const step = useAppSelector(selectStep);
+  const { onSelectStep } = useNavigation();
 
   useEffect(() => {
     dispatch(setBikeTypes([]));
     dispatch(fetchQuestionsActions());
+    onSelectStep(0);
   }, []);
 
   const onRenderStep = (cardType: string) => {
@@ -38,19 +39,10 @@ const Home: React.FC = () => {
         maxWidth='100%'
         height='100vh'
         backgroundColor='lightGray'
+        pt={{ _: "s32" }}
       >
+        <Navigation isMenuVisible={false} />
         <SectionWrapper p={{ _: "s24", mdTablet: "s64" }}>
-          <Typography
-            className='logo'
-            type='link'
-            m={{ _: "s24", mdTablet: "s64" }}
-            fontWeight={{ _: "fw600" }}
-            color='primary'
-            onClick={() => navigate("/")}
-          >
-            KILO.RIDE
-          </Typography>
-
           {onRenderStep(quizQA[step]?.questionType)}
         </SectionWrapper>
       </ContentWrapper>

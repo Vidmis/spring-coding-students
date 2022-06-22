@@ -1,6 +1,5 @@
 import {
   AlignItemsProps,
-  BackgroundColorProps,
   BorderProps,
   BordersProps,
   BoxShadowProps,
@@ -18,7 +17,6 @@ import {
   TextAlignProps,
   ZIndexProps,
   alignItems,
-  backgroundColor,
   border,
   borders,
   color,
@@ -55,7 +53,6 @@ const boxProps = compose(
   flexWrap,
   justifyContent,
   alignItems,
-  backgroundColor,
   fontSize,
   borders
 );
@@ -76,7 +73,6 @@ export interface IBoxStylesProps<T>
     FlexDirectionProps<T>,
     FlexWrapProps<T>,
     AlignItemsProps<T>,
-    BackgroundColorProps<T>,
     FontSizeProps<T>,
     BorderProps<T>,
     BordersProps<T> {

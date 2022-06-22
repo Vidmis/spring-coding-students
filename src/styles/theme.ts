@@ -1,4 +1,4 @@
-import { darken, lighten } from "polished";
+import { lighten } from "polished";
 
 export type Colors = keyof typeof colors;
 
@@ -261,7 +261,7 @@ export const theme = {
       fontWeight: 500,
       color: colors.white,
     },
-    link: {
+    Link: {
       fontSize: "1.5rem",
       fontWeight: 500,
       lineHeight: "2.25rem",

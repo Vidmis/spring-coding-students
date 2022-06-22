@@ -1,10 +1,10 @@
 import React, { StrictMode } from "react";
+import { ThemeProvider, createGlobalStyle } from "styled-components/macro";
+import { persistor, store } from "state/store";
 
-import { Provider } from "react-redux";
-import { createGlobalStyle, ThemeProvider } from "styled-components/macro";
-import { theme } from "styles/theme";
-import { store, persistor } from "state/store";
 import { PersistGate } from "redux-persist/integration/react";
+import { Provider } from "react-redux";
+import { theme } from "styles/theme";
 
 const GlobalStyle = createGlobalStyle`
 * {

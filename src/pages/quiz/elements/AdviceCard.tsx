@@ -2,6 +2,7 @@ import { ContentWrapper, Typography } from "components";
 
 import { Button } from "components/atoms";
 import { IQuestionsData } from "state/types";
+import { ROUTES } from "consts";
 import React from "react";
 import { navigate } from "gatsby";
 import { useNavigation } from "hooks";
@@ -12,12 +13,11 @@ interface AdviceCardProps {
 }
 
 const AdviceCard: React.FC<AdviceCardProps> = ({ quizQA, step }) => {
-  const { onNextStep, selectStep } = useNavigation();
+  const { onNextStep } = useNavigation();
 
   const handleOnClick = () => {
     if (step >= quizQA?.length - 1) {
-      navigate("/checkout");
-      selectStep(0);
+      navigate(ROUTES.CHECKOUT);
     } else {
       onNextStep();
     }

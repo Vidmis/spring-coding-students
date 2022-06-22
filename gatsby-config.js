@@ -37,5 +37,15 @@ module.exports = {
         srcPath: path.resolve(__dirname, "src"),
       },
     },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: "KILO.RIDE",
+        short_name: "KILO",
+        start_url: "/",
+        display: "standalone",
+        icon: "src/assets/images/icon.png",
+      },
+    },
   ],
 };

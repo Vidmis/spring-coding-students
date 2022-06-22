@@ -5,33 +5,36 @@ import "swiper/css";
 import { Navigation, Pagination } from "swiper";
 import React, { useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { laptop, mdTablet } from "styles/breakpoints";
 import { selectBikes, selectUserBikeTypes } from "state/selectors";
 import { useAppDispatch, useAppSelector } from "state/hooks";
 
-import BikeImageBox from "pages/checkout/layouts/BikeImageBox";
-import BikeSpecifications from "pages/checkout/layouts/BikeSpecifications";
+import BikeImageBox from "pages/checkout/elements/BikeImageBox";
+import BikeSpecifications from "pages/checkout/elements/BikeSpecifications";
 import { Box } from "components";
 import { fetchBikesActions } from "state/sagasActions";
-import { mdTablet } from "styles/breakpoints";
 import styled from "styled-components/macro";
 import { theme } from "styles/theme";
 
 const Carousel: React.FC = () => {
   const dispatch = useAppDispatch();
-  const answers = useAppSelector(selectUserBikeTypes);
+  const answers: string[] = useAppSelector(selectUserBikeTypes)
+    .flat()
+    .join(" ")
+    .split(" ");
   const bikesData = useAppSelector(selectBikes);
 
   useEffect(() => {
     dispatch(fetchBikesActions());
   }, []);
 
-  const sortedBikes = answers.flat(2).reduce((bikeMatch, bike) => {
+  const sortedBikes = answers.reduce((bikeMatch, bike: string) => {
     bikeMatch[bike] = (bikeMatch[bike] || 0) + 1;
     return bikeMatch;
-  }, {});
+  }, {} as any);
 
   const matchingBikes = Object.keys(sortedBikes).filter(
-    (bike) =>
+    (bike: string) =>
       sortedBikes[bike] === Math.max.apply(null, Object.values(sortedBikes))
   );
   return (
@@ -76,16 +79,17 @@ const SpecificationsWrapper = styled(Box)`
   .swiper-wrapper {
     display: flex;
     justify-content: start;
-    /* height: 100%; */
-    /* width: 5rem; */
     box-shadow: none;
     border-radius: 5px;
     .swiper-button-prev {
       display: none;
       @media ${mdTablet} {
         display: block;
+        color: ${theme.colors.primary};
       }
-      color: ${theme.colors.white};
+      @media ${laptop} {
+        color: ${theme.colors.white};
+      }
     }
     .swiper-button-next {
       display: none;
@@ -97,9 +101,5 @@ const SpecificationsWrapper = styled(Box)`
   }
   .swiper {
     width: 100%;
-    /* min-height: 100%; */
-    @media ${mdTablet} {
-      /* min-height: 86.5vh; */
-    }
   }
 `;

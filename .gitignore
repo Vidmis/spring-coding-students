@@ -19,6 +19,7 @@
 
 # misc
 .cache
+ngrok
 
 # misc
 .DS_Store

@@ -19,6 +19,13 @@ export interface IStepState {
   value: number;
 }
 
+export enum Bikes {
+  ROAD = "road",
+  GRAVEL = "gravel",
+  MTB = "mtb",
+  HYBRID = "hybrid",
+}
+
 export interface IUserAnswerSlice {
   userHeight: number;
   bikeTypes: string[];
